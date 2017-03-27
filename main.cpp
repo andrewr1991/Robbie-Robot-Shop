@@ -1,9 +1,5 @@
 #include <iostream>
-#include "head.h"
-#include "locomotor.h"
-#include "arm.h"
-#include "battery.h"
-#include "torso.h"
+#include "robot_part.h"
 
 using namespace std;
 
