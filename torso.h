@@ -9,11 +9,7 @@ class Torso : public Robot_part {
 
 	public:
 		Torso(string _name, int _model_number, double _cost, string _description, string _image_filename)
-			: Robot_part(_name, _model_number, _cost, _description, _image_filename) {}
+			: Robot_part(_name, _model_number, _cost, _description, _image_filename), _battery_compartments {battery_compartments}, max_arms {_max_arms} {}
 
-			void set_battery_compartments(int _battery_compartments);
-			int get_battery_compartments();
-			void set_max_arms(int _max_arms);
-			int get_max_arms();
 };
 #endif
