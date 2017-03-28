@@ -11,3 +11,7 @@ double Battery::get_power_available() {
 void Battery::set_max_energy(double _max_energy) {
 	max_energy = _max_energy;
 }
+
+double Battery::get_max_energy() {
+	return max_energy;
+}
