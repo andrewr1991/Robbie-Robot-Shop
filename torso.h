@@ -8,8 +8,8 @@ class Torso : public Robot_part {
 		int max_arms;
 
 	public:
-		Torso(string _name, int _model_number, double _cost, string _description, string _image_filename)
-			: Robot_part(_name, _model_number, _cost, _description, _image_filename), _battery_compartments {battery_compartments}, max_arms {_max_arms} {}
+		Torso(string _name, int _model_number, double _cost, string _description, string _image_filename, int _battery_compartments, int _max_arms)
+			: Robot_part(_name, _model_number, _cost, _description, _image_filename), battery_compartments {_battery_compartments}, max_arms {_max_arms} {}
 
 };
 #endif

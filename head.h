@@ -9,7 +9,7 @@ class Head : public Robot_part {
 
 	public:
 		Head(string _name, int _model_number, double _cost, string _description, string _image_filename, double _power)
-			: Robot_part(_name, _model_number, _cost, _description, _image_filename), power{_power} {}
+			: Robot_part{_name, _model_number, _cost, _description, _image_filename}, power{_power} {}
 
 
 };
