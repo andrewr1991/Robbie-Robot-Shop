@@ -9,8 +9,8 @@ debug: main
 rebuild: clean main
 
 main: main.o head.o locomotor.o torso.o battery.o arm.o robot_part.o robot_model.o shop.o
-		$(CXX) $(CXXFLAGS) main.o head.o locomotor.o torso.o battery.o arm.o
-main.o: main.cpp head.h locomotor.h torso.h battery.h arm.h
+		$(CXX) $(CXXFLAGS) main.o head.o locomotor.o torso.o battery.o arm.o robot_part.o robot_model.o shop.o
+main.o: main.cpp head.h locomotor.h torso.h battery.h arm.h robot_part.h robot_model.h shop.h
 		$(CXX) $(CXXFLAGS) -c main.cpp
 head.o: head.cpp head.h robot_part.h
 		$(CXX) $(CXXFLAGS) -c head.cpp
@@ -24,7 +24,7 @@ arm.o: arm.cpp arm.h robot_part.h
 		$(CXX) $(CXXFLAGS) -c arm.cpp
 robot_part.o: robot_part.cpp robot_part.h
 		$(CXX) $(CXXFLAGS) -c robot_part.cpp
-robot_model.o: robot_model.cpp robot_part.h
+robot_model.o: robot_model.cpp robot_model.h robot_part.h
 		$(CXX) $(CXXFLAGS) -c robot_model.cpp
 shop.o: shop.cpp shop.h robot_part.h robot_model.h
 		$(CXX) $(CXXFLAGS) -c shop.cpp

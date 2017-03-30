@@ -1,21 +1,16 @@
-#include <iostream>
+#include "shop.h"
+#include "robot_model.h"
 #include "robot_part.h"
-#include "locomotor.h"
-#include "locomotor.cpp"
-#include "head.h"
-#include "head.cpp"
-#include "torso.h"
-#include "torso.cpp"
-#include "arm.h"
-#include "arm.cpp"
-#include "battery.h"
-#include "battery.cpp"
+#include <iostream>
+#include <string>
 
 using namespace std;
 
 int main() {
 
-	/* Example of creating a robot part*/
+	Shop shop;
+	shop.create_new_robot_part();
+/*
 	string name = "Locomotor";
 	int model = 123123;
 	double cost = 5000.99;
@@ -24,6 +19,7 @@ int main() {
 	double max_power = 7.8;
 
 	Locomotor loco (name, model, cost, description, image_filename, max_power);
-
+*/
+	cout << "working" << endl;
 	return 0;
 }
