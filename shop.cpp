@@ -1,5 +1,18 @@
 #include "shop.h"
 
+void Shop::create_new_robot_model() {
+    string name = "Model 1";
+    int model = 1;
+    double cost = 9500;
+    double max_speed = 100;
+    double max_battery = 100;
+    
+	Robot_model test; //(name, model, cost, max_speed, max_battery);
+	test.create_model_1();
+	Robot_models.push_back(test);
+}
+	
+
 void Shop::create_new_robot_torso() {
 
 	string name;

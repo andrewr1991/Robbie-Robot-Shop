@@ -14,6 +14,8 @@
 #include "battery.cpp"
 #include <string>
 
+using namespace std;
+
 class Robot_model {
   private:
     string name;
@@ -30,6 +32,8 @@ class Robot_model {
     Robot_part battery;
 
   public:
+  	Robot_model(string _name, int _model, double _cost, double _max_speed, double _max_battery) : name{_name}, model{_model}, cost{_cost}, max_speed{_max_speed}, max_battery{_max_battery} { }
+  	
   	void create_model_1();
 
 };

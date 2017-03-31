@@ -29,6 +29,7 @@ class Shop {
     void create_new_robot_arm();
     void create_new_robot_locomotor();
     void create_new_robot_battery();
+    
     void create_new_robot_model();
 };
 #endif
