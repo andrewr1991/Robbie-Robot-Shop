@@ -1,87 +1,88 @@
 #include "shop.h"
 
-void Shop::create_new_robot_part() {
-  int selection;
+void Shop::create_new_robot_torso() {
 
-  //Robot part variables
-  string name;
-  int model;
-  double cost;
-  string description;
-  string image_filename;
+	string name;
+	int model;
+	double cost;
+	string description;
+	string image_filename;
 
-  string menu_robot_parts = "1. Robot torso\n2. Robot head\n3. Robot arm\n4. Robot locomotor\n5. Robot battery\n";
+	name = "Torso";
+	model = 1;
+	cost = 5000;
+	description = "The torso is the main component of a robot";
+	image_filename = "torso.png";
 
-  cout << menu_robot_parts << endl;
-  cout << "Which robot part would you like to create: ";
-  cin >> selection;
+	int battery_compartments;
+	int max_arms;
 
-  //Case 1
-  if (selection == 1) {
-      name = "Torso";
-      model = 1;
-      cost = 5000;
-      description = "The torso is the main component of a robot";
-      image_filename = "torso.png";
+	while(true) {
+	cout << "Select how many battery compartments you would like between (1 - 3): ";
+	cin >> battery_compartments;
 
-      int battery_compartments;
-      int max_arms;
+	if (battery_compartments < 1 || battery_compartments > 3) {
+	  cout << "Please enter a valid selection!\n\n";
+	}
+	else {
+	  break;
+	}
+	}
 
-      while(true) {
-        cout << "Select how many battery compartments you would like between (1 - 3): ";
-        cin >> battery_compartments;
+	while(true) {
+	cout << "Select how many arms you would like between (1 - 4): ";
+	cin >> max_arms;
 
-        if (battery_compartments < 1 || battery_compartments > 3) {
-          cout << "Please enter a valid selection!\n\n";
-        }
-        else {
-          break;
-        }
-      }
+	if (max_arms < 1 || max_arms > 4) {
+	  cout << "Please enter a valid selection!\n\n";
+	}
+	else {
+	  break;
+	}
 
-      while(true) {
-        cout << "Select how many arms you would like between (1 - 4): ";
-        cin >> max_arms;
+	Torso torso (name, model, cost, description, image_filename, battery_compartments, max_arms);
+	robot_parts.push_back(torso);
+	}
+}
 
-        if (max_arms < 1 || max_arms > 4) {
-          cout << "Please enter a valid selection!\n\n";
-        }
-        else {
-          break;
-        }
+void Shop::create_new_robot_head() {
+	string name;
+	int model;
+	double cost;
+	string description;
+	string image_filename;
+	
+	name = "Head";
+	model = 2;
+	cost = 2500;
+	description = "The head houses the logic components of a robot";
+	image_filename = "head.png";
 
-      Torso torso (name, model, cost, description, image_filename, battery_compartments, max_arms);
-      robot_parts.push_back(torso);
-    }
-  }
+	double power;
 
-    //Case 2
-    else if (selection == 2) {
-      name = "Head";
-      model = 2;
-      cost = 2500;
-      description = "The head houses the logic components of a robot";
-      image_filename = "head.png";
+	while(true) {
+		cout << "Select the amount of power you would like between (25 - 100): ";
+		cin >> power;
 
-      double power;
+		if (power < 25 || power > 100) {
+		  cout << "Please enter a valid selection!\n\n";
+		}
+		else {
+		  break;
+		}
+	}
 
-      while(true) {
-        cout << "Select the amount of power you would like between (25 - 100): ";
-        cin >> power;
+	Head head (name, model, cost, description, image_filename, power);
+	robot_parts.push_back(head);
+}
 
-        if (power < 25 || power > 100) {
-          cout << "Please enter a valid selection!\n\n";
-        }
-        else {
-          break;
-        }
-      }
-
-      Head head (name, model, cost, description, image_filename, power);
-      robot_parts.push_back(head);
-    }
-
-    else if (selection == 3) {
+void Shop::create_new_robot_arm() {
+	string name;
+	int model;
+	double cost;
+	string description;
+	string image_filename;
+	
       name = "Arm";
       model = 3;
       cost = 1500;
@@ -106,7 +107,13 @@ void Shop::create_new_robot_part() {
       robot_parts.push_back(arm);
     }
 
-    else if (selection == 4) {
+void Shop::create_new_robot_locomotor() {
+	string name;
+	int model;
+	double cost;
+	string description;
+	string image_filename;
+	
       name = "Locomotor";
       model = 4;
       cost = 2000;
@@ -131,7 +138,13 @@ void Shop::create_new_robot_part() {
       robot_parts.push_back(locomotor);
     }
 
-    else if (selection == 5) {
+void Shop::create_new_robot_battery() {
+	string name;
+	int model;
+	double cost;
+	string description;
+	string image_filename;
+	
       name = "Battery";
       model = 5;
       cost = 5000;
@@ -167,5 +180,6 @@ void Shop::create_new_robot_part() {
       Battery battery (name, model, cost, description, image_filename, power_available, max_energy);
       robot_parts.push_back(battery);
     }
-  }
+  
+  
 }

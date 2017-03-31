@@ -24,7 +24,11 @@ class Shop {
     vector <Robot_model> Robot_models;
 
   public:
-    void create_new_robot_part();
+    void create_new_robot_torso();
+    void create_new_robot_head();
+    void create_new_robot_arm();
+    void create_new_robot_locomotor();
+    void create_new_robot_battery();
     void create_new_robot_model();
 };
 #endif
