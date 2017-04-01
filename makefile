@@ -26,7 +26,7 @@ robot_part.o: robot_part.cpp robot_part.h
 		$(CXX) $(CXXFLAGS) -c robot_part.cpp
 robot_model.o: robot_model.cpp robot_model.h robot_part.h
 		$(CXX) $(CXXFLAGS) -c robot_model.cpp
-shop.o: shop.cpp shop.h robot_part.h robot_model.h
+shop.o: shop.cpp shop.h robot_part.h robot_model.h robot_model.cpp robot_model.h
 		$(CXX) $(CXXFLAGS) -c shop.cpp
 clean:
 	-rm -f *.o *~ a.out
