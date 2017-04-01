@@ -30,6 +30,6 @@ class Shop {
     void create_new_robot_locomotor();
     void create_new_robot_battery();
     
-    void create_new_robot_model();
+    void create_new_robot_model_1();
 };
 #endif

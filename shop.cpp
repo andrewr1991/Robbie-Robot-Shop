@@ -1,11 +1,11 @@
 #include "shop.h"
 
-void Shop::create_new_robot_model() {
-    string name = "Model 1";
-    int model = 1;
-    double cost = 9500;
-    double max_speed = 100;
-    double max_battery = 100;
+void Shop::create_new_robot_model_1() {
+    string model_name = "Model 1";
+    int model_model = 1;
+    double model_cost = 9500;
+    double model_max_speed = 100;
+    double model_max_battery = 100;
     
     string part_name;
 	int part_model;
@@ -70,7 +70,7 @@ void Shop::create_new_robot_model() {
 	
     Battery model_battery (part_name, part_model, part_cost, part_description, part_image_filename, battery_power_available, battery_max_energy);	
     
-	Robot_model test (name, model, cost, max_speed, max_battery, model_torso, model_head, model_arm, model_locomotor, model_battery);
+	Robot_model test (model_name, model_model, model_cost, model_max_speed, model_max_battery, model_torso, model_head, model_arm, model_locomotor, model_battery);
 	Robot_models.push_back(test);
 }
 	
