@@ -31,5 +31,7 @@ class Shop {
     void create_new_robot_battery();
     
     void create_new_robot_model_1();
+    void create_new_robot_model_2();
+    void create_new_robot_model_3();
 };
 #endif
