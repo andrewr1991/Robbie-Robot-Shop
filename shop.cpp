@@ -1,13 +1,13 @@
 #include "shop.h"
 
 void Shop::create_new_robot_model_1() {
-    string model_name = "Model 1";
-    int model_model = 1;
-    double model_cost = 16000;
-    double model_max_speed = 100;
-    double model_max_battery = 100;
-    
-    string part_name;
+  string model_name = "Robot 9000";
+  int model_model = 1;
+  double model_cost = 16000;
+  double model_max_speed = 100;
+  double model_max_battery = 100;
+
+  string part_name;
 	int part_model;
 	double part_cost;
 	string part_description;
@@ -22,9 +22,9 @@ void Shop::create_new_robot_model_1() {
 
 	int torso_battery_compartments = 3;
 	int torso_max_arms = 4;
-	
+
 	Torso model_torso (part_name, part_model, part_cost, part_description, part_image_filename, torso_battery_compartments, torso_max_arms);
-	
+
 	//Head
 	part_name = "Head";
 	part_model = 2;
@@ -33,9 +33,9 @@ void Shop::create_new_robot_model_1() {
 	part_image_filename = "head.png";
 
 	double head_head_power = 100;
-	
+
 	Head model_head (part_name, part_model, part_cost, part_description, part_image_filename, head_head_power);
-	
+
 	//Arm
 	part_name = "Arm";
 	part_model = 3;
@@ -44,10 +44,10 @@ void Shop::create_new_robot_model_1() {
 	part_image_filename = "arm.png";
 
 	double arm_max_power = 100;
-	
-    Arm model_arm (part_name, part_model, part_cost, part_description, part_image_filename, arm_max_power);
-    
-    //Locomotor
+
+  Arm model_arm (part_name, part_model, part_cost, part_description, part_image_filename, arm_max_power);
+
+  //Locomotor
 	part_name = "Locomotor";
 	part_model = 4;
 	part_cost = 2000;
@@ -55,10 +55,10 @@ void Shop::create_new_robot_model_1() {
 	part_image_filename = "locomotor.png";
 
 	double locomotor_max_power = 100;
-	
-    Locomotor model_locomotor (part_name, part_model, part_cost, part_description, part_image_filename, locomotor_max_power);
-    
-    //Battery
+
+  Locomotor model_locomotor (part_name, part_model, part_cost, part_description, part_image_filename, locomotor_max_power);
+
+  //Battery
 	part_name = "Battery";
 	part_model = 5;
 	part_cost = 5000;
@@ -67,21 +67,21 @@ void Shop::create_new_robot_model_1() {
 
 	double battery_power_available = 100;
 	double battery_max_energy = 100;
-	
-    Battery model_battery (part_name, part_model, part_cost, part_description, part_image_filename, battery_power_available, battery_max_energy);	
-    
+
+  Battery model_battery (part_name, part_model, part_cost, part_description, part_image_filename, battery_power_available, battery_max_energy);
+
 	Robot_model test (model_name, model_model, model_cost, model_max_speed, model_max_battery, model_torso, model_head, model_arm, model_locomotor, model_battery);
 	Robot_models.push_back(test);
 }
 
 void Shop::create_new_robot_model_2() {
-    string model_name = "Model 2";
-    int model_model = 2;
-    double model_cost = 8000;
-    double model_max_speed = 50;
-    double model_max_battery = 50;
-    
-    string part_name;
+  string model_name = "Robot 5000";
+  int model_model = 2;
+  double model_cost = 8000;
+  double model_max_speed = 50;
+  double model_max_battery = 50;
+
+  string part_name;
 	int part_model;
 	double part_cost;
 	string part_description;
@@ -96,9 +96,9 @@ void Shop::create_new_robot_model_2() {
 
 	int torso_battery_compartments = 2;
 	int torso_max_arms = 2;
-	
+
 	Torso model_torso (part_name, part_model, part_cost, part_description, part_image_filename, torso_battery_compartments, torso_max_arms);
-	
+
 	//Head
 	part_name = "Head";
 	part_model = 2;
@@ -107,9 +107,9 @@ void Shop::create_new_robot_model_2() {
 	part_image_filename = "head.png";
 
 	double head_head_power = 50;
-	
+
 	Head model_head (part_name, part_model, part_cost, part_description, part_image_filename, head_head_power);
-	
+
 	//Arm
 	part_name = "Arm";
 	part_model = 3;
@@ -118,9 +118,9 @@ void Shop::create_new_robot_model_2() {
 	part_image_filename = "arm.png";
 
 	double arm_max_power = 50;
-	
+
     Arm model_arm (part_name, part_model, part_cost, part_description, part_image_filename, arm_max_power);
-    
+
     //Locomotor
 	part_name = "Locomotor";
 	part_model = 4;
@@ -129,9 +129,9 @@ void Shop::create_new_robot_model_2() {
 	part_image_filename = "locomotor.png";
 
 	double locomotor_max_power = 50;
-	
+
     Locomotor model_locomotor (part_name, part_model, part_cost, part_description, part_image_filename, locomotor_max_power);
-    
+
     //Battery
 	part_name = "Battery";
 	part_model = 5;
@@ -141,20 +141,20 @@ void Shop::create_new_robot_model_2() {
 
 	double battery_power_available = 50;
 	double battery_max_energy = 50;
-	
-    Battery model_battery (part_name, part_model, part_cost, part_description, part_image_filename, battery_power_available, battery_max_energy);	
-    
+
+    Battery model_battery (part_name, part_model, part_cost, part_description, part_image_filename, battery_power_available, battery_max_energy);
+
 	Robot_model test (model_name, model_model, model_cost, model_max_speed, model_max_battery, model_torso, model_head, model_arm, model_locomotor, model_battery);
 	Robot_models.push_back(test);
 }
 
 void Shop::create_new_robot_model_3() {
-    string model_name = "Model 3";
+    string model_name = "Robot 2000";
     int model_model = 3;
     double model_cost = 4250;
     double model_max_speed = 25;
     double model_max_battery = 25;
-    
+
     string part_name;
 	int part_model;
 	double part_cost;
@@ -170,9 +170,9 @@ void Shop::create_new_robot_model_3() {
 
 	int torso_battery_compartments = 1;
 	int torso_max_arms = 1;
-	
+
 	Torso model_torso (part_name, part_model, part_cost, part_description, part_image_filename, torso_battery_compartments, torso_max_arms);
-	
+
 	//Head
 	part_name = "Head";
 	part_model = 2;
@@ -181,9 +181,9 @@ void Shop::create_new_robot_model_3() {
 	part_image_filename = "head.png";
 
 	double head_head_power = 25;
-	
+
 	Head model_head (part_name, part_model, part_cost, part_description, part_image_filename, head_head_power);
-	
+
 	//Arm
 	part_name = "Arm";
 	part_model = 3;
@@ -192,9 +192,9 @@ void Shop::create_new_robot_model_3() {
 	part_image_filename = "arm.png";
 
 	double arm_max_power = 25;
-	
+
     Arm model_arm (part_name, part_model, part_cost, part_description, part_image_filename, arm_max_power);
-    
+
     //Locomotor
 	part_name = "Locomotor";
 	part_model = 4;
@@ -203,9 +203,9 @@ void Shop::create_new_robot_model_3() {
 	part_image_filename = "locomotor.png";
 
 	double locomotor_max_power = 25;
-	
+
     Locomotor model_locomotor (part_name, part_model, part_cost, part_description, part_image_filename, locomotor_max_power);
-    
+
     //Battery
 	part_name = "Battery";
 	part_model = 5;
@@ -215,13 +215,12 @@ void Shop::create_new_robot_model_3() {
 
 	double battery_power_available = 25;
 	double battery_max_energy = 25;
-	
-    Battery model_battery (part_name, part_model, part_cost, part_description, part_image_filename, battery_power_available, battery_max_energy);	
-    
+
+    Battery model_battery (part_name, part_model, part_cost, part_description, part_image_filename, battery_power_available, battery_max_energy);
+
 	Robot_model test (model_name, model_model, model_cost, model_max_speed, model_max_battery, model_torso, model_head, model_arm, model_locomotor, model_battery);
 	Robot_models.push_back(test);
 }
-	
 
 void Shop::create_new_robot_torso() {
 
@@ -274,7 +273,7 @@ void Shop::create_new_robot_head() {
 	double cost;
 	string description;
 	string image_filename;
-	
+
 	name = "Head";
 	model = 2;
 	cost = 2500;
@@ -305,7 +304,7 @@ void Shop::create_new_robot_arm() {
 	double cost;
 	string description;
 	string image_filename;
-	
+
       name = "Arm";
       model = 3;
       cost = 1500;
@@ -336,7 +335,7 @@ void Shop::create_new_robot_locomotor() {
 	double cost;
 	string description;
 	string image_filename;
-	
+
       name = "Locomotor";
       model = 4;
       cost = 2000;
@@ -367,7 +366,7 @@ void Shop::create_new_robot_battery() {
 	double cost;
 	string description;
 	string image_filename;
-	
+
       name = "Battery";
       model = 5;
       cost = 5000;
@@ -403,6 +402,6 @@ void Shop::create_new_robot_battery() {
       Battery battery (name, model, cost, description, image_filename, power_available, max_energy);
       robot_parts.push_back(battery);
     }
-  
-  
+
+
 }
