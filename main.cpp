@@ -15,13 +15,19 @@ int main() {
 
 	string menu_robot_models = "1. Robot 9000: Best specs. available\n2. Robot 5000: Average specs but still a great value\n";
 	menu_robot_models += "3. Robot 2000: Minimal specs. Great robot for beginners\n0: To return to the previous menu\n";
-	menu_robot_models += "Which robot would you like: \n";
+	string menu_robot_model_selection = "\nWhich robot would you like: ";
 
 	string model_1 = "Model 9000\n\nCost: $16,000\nMax Speed: 100\nMax Battery: 100\nTorso:\n- 3 battery compartments\n";
 	model_1 += "- 4 arms\nHead:\n- 100 head power\nArm:\n- 100 arm power\nLocomotor:\n- 100 locomotor power\n";
 	model_1 += "Battery:\n- 100 power available\n- 100 max energy\n";
-	//string model_2 =
-	//string model_3 =
+	
+	string model_2 = "Model 5000\n\nCost: $8,000\nMax Speed: 50\nMax Battery: 50\nTorso:\n- 2 battery compartments\n";
+	model_2 += "- 2 arms\nHead:\n- 50 head power\nArm:\n- 50 arm power\nLocomotor:\n- 50 locomotor power\n";
+	model_2 += "Battery:\n- 50 power available\n- 50 max energy\n";
+	
+	string model_3 = "Model 2000\n\nCost: $4,250\nMax Speed: 25\nMax Battery: 25\nTorso:\n- 1 battery compartments\n";
+	model_3 += "- 1 arm\nHead:\n- 25 head power\nArm:\n- 25 arm power\nLocomotor:\n- 25 locomotor power\n";
+	model_3 += "Battery:\n- 25 power available\n- 25 max energy\n";
 
 	string menu_robot_parts = "\n1. Robot torso\n2. Robot head\n3. Robot arm\n4. Robot locomotor\n";
 	menu_robot_parts += "5. Robot battery\nWhich robot part would you like to create: ";
@@ -35,6 +41,9 @@ int main() {
 			while(true) {
 				cout << menu_robot_models;
 				cout << model_1;
+				cout << model_2;
+				cout << model_3;
+				cout << menu_robot_model_selection;
 				cin >> robot_model_selection;
 				if (robot_model_selection == 1) {
 					shop.create_new_robot_model_1();
