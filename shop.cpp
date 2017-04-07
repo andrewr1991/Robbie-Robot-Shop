@@ -70,8 +70,8 @@ void Shop::create_new_robot_model_1() {
 
   Battery model_battery (part_name, part_model, part_cost, part_description, part_image_filename, battery_power_available, battery_max_energy);
 
-	Robot_model test (model_name, model_model, model_cost, model_max_speed, model_max_battery, model_torso, model_head, model_arm, model_locomotor, model_battery);
-	Robot_models.push_back(test);
+	Robot_model model_1 (model_name, model_model, model_cost, model_max_speed, model_max_battery, model_torso, model_head, model_arm, model_locomotor, model_battery);
+	robot_models.push_back(model_1);
 }
 
 void Shop::create_new_robot_model_2() {
@@ -144,8 +144,8 @@ void Shop::create_new_robot_model_2() {
 
     Battery model_battery (part_name, part_model, part_cost, part_description, part_image_filename, battery_power_available, battery_max_energy);
 
-	Robot_model test (model_name, model_model, model_cost, model_max_speed, model_max_battery, model_torso, model_head, model_arm, model_locomotor, model_battery);
-	Robot_models.push_back(test);
+	Robot_model model_2 (model_name, model_model, model_cost, model_max_speed, model_max_battery, model_torso, model_head, model_arm, model_locomotor, model_battery);
+	robot_models.push_back(model_2);
 }
 
 void Shop::create_new_robot_model_3() {
@@ -218,8 +218,8 @@ void Shop::create_new_robot_model_3() {
 
     Battery model_battery (part_name, part_model, part_cost, part_description, part_image_filename, battery_power_available, battery_max_energy);
 
-	Robot_model test (model_name, model_model, model_cost, model_max_speed, model_max_battery, model_torso, model_head, model_arm, model_locomotor, model_battery);
-	Robot_models.push_back(test);
+	Robot_model model_3 (model_name, model_model, model_cost, model_max_speed, model_max_battery, model_torso, model_head, model_arm, model_locomotor, model_battery);
+	robot_models.push_back(model_3);
 }
 
 void Shop::create_new_robot_torso() {
@@ -402,6 +402,28 @@ void Shop::create_new_robot_battery() {
       Battery battery (name, model, cost, description, image_filename, power_available, max_energy);
       robot_parts.push_back(battery);
     }
-
-
 }
+
+void Shop::create_new_customer() {
+	string name;
+	int customer_number;
+	string phone_number;
+	string email_address;
+	
+	Customer customer(name, customer_number, phone_number, email_address);
+	customers.push_back(customer);
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
