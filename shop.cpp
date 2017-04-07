@@ -413,6 +413,14 @@ void Shop::create_new_customer() {
 	Customer customer(name, customer_number, phone_number, email_address);
 	customers.push_back(customer);
 }
+
+void Shop::create_new_sales_associate() {
+	string name;
+	int employee_number;
+	
+	Sales_associate sales_associate(name, employee_number);
+	sales_associates.push_back(sales_associate);
+}
 	
 	
 	

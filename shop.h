@@ -14,6 +14,8 @@
 #include "battery.cpp"
 #include "customer.h"
 #include "customer.cpp"
+#include "sales_associate.h"
+#include "sales_associate.cpp"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -25,6 +27,7 @@ class Shop {
     vector <Robot_part> robot_parts;
     vector <Robot_model> robot_models;
     vector <Customer> customers;
+    vector <Sales_associate> sales_associates;
 
   public:
   	//Robot parts
@@ -41,6 +44,9 @@ class Shop {
     
     //Customers
     void create_new_customer();
+    
+    //Sales associates
+    void create_new_sales_associate();
     
     
 };

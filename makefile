@@ -8,7 +8,7 @@ debug: main
 
 rebuild: clean main
 
-main: main.o head.o locomotor.o torso.o battery.o arm.o robot_part.o robot_model.o shop.o customer.o
+main: main.o head.o locomotor.o torso.o battery.o arm.o robot_part.o robot_model.o shop.o customer.o sales_associate.o
 		$(CXX) $(CXXFLAGS) main.o head.o locomotor.o torso.o battery.o arm.o robot_part.o robot_model.o shop.o
 main.o: main.cpp head.h locomotor.h torso.h battery.h arm.h robot_part.h robot_model.h shop.h customer.h
 		$(CXX) $(CXXFLAGS) -c main.cpp
@@ -30,5 +30,7 @@ shop.o: shop.cpp shop.h robot_part.h robot_model.h robot_model.cpp robot_model.h
 		$(CXX) $(CXXFLAGS) -c shop.cpp
 customer.o: customer.cpp customer.h
 		$(CXX) $(CXXFLAGS) -c customer.cpp
+sales_associate.o: sales_associate.cpp sales_associate.h
+		$(CXX) $(CXXFLAGS) -c sales_associate.cpp
 clean:
 	-rm -f *.o *~ a.out
