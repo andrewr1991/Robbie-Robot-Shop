@@ -68,5 +68,7 @@ class Shop {
     
     //Loading data
     void loadData();
+    
+    void vectorSize();
 };
 #endif

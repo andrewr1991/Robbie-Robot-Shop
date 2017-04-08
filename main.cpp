@@ -9,6 +9,7 @@ using namespace std;
 int main() {
 	Shop shop;
 	shop.loadData();
+	shop.vectorSize();
 	
 	int main_menu_selection;
 	int robot_part_selection;

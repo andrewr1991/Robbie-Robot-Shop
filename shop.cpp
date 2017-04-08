@@ -1,5 +1,7 @@
 #include "shop.h"
 
+using namespace std;
+
 void Shop::create_new_robot_model_1() {
 	string model_name = "Robot 9000";
 	int model_model = 1;
@@ -511,16 +513,26 @@ void Shop::loadData() {
 	
 	torso_input_file.open("torsos.txt");
 	
-	getline(torso_input_file, name_data, ',');
-	getline(torso_input_file, model_number_data, ',');
-	getline(torso_input_file, cost_data, ',');
-	getline(torso_input_file, description_data, ',');
-	getline(torso_input_file, image_filename_data, ',');
-	getline(torso_input_file, battery_compartments_data, ',');
-	getline(torso_input_file, max_arms_data, ',');
-	
-	Torso torso (name_data, stoi(model_number_data), stod(cost_data), description_data, image_filename_data, stoi(battery_compartments_data), stoi(max_arms_data));
-	robot_parts.push_back(torso);
+	while(true) {
+		if (torso_input_file.eof()) {
+			break;
+		}
+		
+		getline(torso_input_file, name_data, ',');
+		getline(torso_input_file, model_number_data, ',');
+		getline(torso_input_file, cost_data, ',');
+		getline(torso_input_file, description_data, ',');
+		getline(torso_input_file, image_filename_data, ',');
+		getline(torso_input_file, battery_compartments_data, ',');
+		getline(torso_input_file, max_arms_data, ',');
+		
+		Torso torso (name_data, stoi(model_number_data), stod(cost_data), description_data, image_filename_data, stoi(battery_compartments_data), stoi(max_arms_data));
+		robot_parts.push_back(torso);
+	}
+}
+
+void Shop::vectorSize() {
+	cout << robot_parts.size();
 }
 	
 	
