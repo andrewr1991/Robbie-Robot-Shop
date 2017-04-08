@@ -405,27 +405,41 @@ void Shop::create_new_robot_battery() {
 }
 
 void Shop::create_new_customer() {
-	ofstream customer_file;
+	//ofstream customer_file;
 	string name;
 	int customer_number;
 	string phone_number;
 	string email_address;
 	
+	getchar();
+	cout << "Enter the name of the customer: ";
 	getline(cin, name);
+	cout << "Enter the customer number: ";
 	cin >> customer_number;
+	getchar();
+	cout << "Enter the customer phone number: ";
 	getline(cin, phone_number);
+	cout << "Enter the customer email address: ";
 	getline(cin, email_address);
 	
 	Customer customer(name, customer_number, phone_number, email_address);
 	customers.push_back(customer);
+	cout << "Customer created successfully\n\n";
 }
 
 void Shop::create_new_sales_associate() {
 	string name;
 	int employee_number;
 	
+	getchar();
+	cout << "Enter the name of the sales associate: ";
+	getline(cin, name);
+	cout << "Enter the employee number: ";
+	cin >> employee_number;
+	
 	Sales_associate sales_associate(name, employee_number);
 	sales_associates.push_back(sales_associate);
+	cout << "Sales associate created successfully\n\n";
 }
 	
 	
