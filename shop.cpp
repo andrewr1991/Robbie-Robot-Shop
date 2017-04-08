@@ -1,13 +1,13 @@
 #include "shop.h"
 
 void Shop::create_new_robot_model_1() {
-  string model_name = "Robot 9000";
-  int model_model = 1;
-  double model_cost = 16000;
-  double model_max_speed = 100;
-  double model_max_battery = 100;
+	string model_name = "Robot 9000";
+	int model_model = 1;
+	double model_cost = 16000;
+	double model_max_speed = 100;
+	double model_max_battery = 100;
 
-  string part_name;
+	string part_name;
 	int part_model;
 	double part_cost;
 	string part_description;
@@ -45,9 +45,9 @@ void Shop::create_new_robot_model_1() {
 
 	double arm_max_power = 100;
 
-  Arm model_arm (part_name, part_model, part_cost, part_description, part_image_filename, arm_max_power);
+	Arm model_arm (part_name, part_model, part_cost, part_description, part_image_filename, arm_max_power);
 
-  //Locomotor
+	//Locomotor
 	part_name = "Locomotor";
 	part_model = 4;
 	part_cost = 2000;
@@ -56,9 +56,9 @@ void Shop::create_new_robot_model_1() {
 
 	double locomotor_max_power = 100;
 
-  Locomotor model_locomotor (part_name, part_model, part_cost, part_description, part_image_filename, locomotor_max_power);
+	Locomotor model_locomotor (part_name, part_model, part_cost, part_description, part_image_filename, locomotor_max_power);
 
-  //Battery
+	//Battery
 	part_name = "Battery";
 	part_model = 5;
 	part_cost = 5000;
@@ -68,7 +68,7 @@ void Shop::create_new_robot_model_1() {
 	double battery_power_available = 100;
 	double battery_max_energy = 100;
 
-  Battery model_battery (part_name, part_model, part_cost, part_description, part_image_filename, battery_power_available, battery_max_energy);
+	Battery model_battery (part_name, part_model, part_cost, part_description, part_image_filename, battery_power_available, battery_max_energy);
 
 	Robot_model model_1 (model_name, model_model, model_cost, model_max_speed, model_max_battery, model_torso, model_head, model_arm, model_locomotor, model_battery);
 	robot_models.push_back(model_1);
@@ -229,6 +229,8 @@ void Shop::create_new_robot_torso() {
 	double cost;
 	string description;
 	string image_filename;
+	
+	string file_data;
 
 	name = "Torso";
 	model = 1;
@@ -240,31 +242,37 @@ void Shop::create_new_robot_torso() {
 	int max_arms;
 
 	while(true) {
-	cout << "Select how many battery compartments you would like between (1 - 3): ";
-	cin >> battery_compartments;
+		cout << "Select how many battery compartments you would like between (1 - 3): ";
+		cin >> battery_compartments;
 
-	if (battery_compartments < 1 || battery_compartments > 3) {
-	  cout << "Please enter a valid selection!\n\n";
-	}
-	else {
-	  break;
-	}
+		if (battery_compartments < 1 || battery_compartments > 3) {
+		  cout << "Please enter a valid selection!\n\n";
+		}
+		else {
+		  break;
+		}
 	}
 
 	while(true) {
-	cout << "Select how many arms you would like between (1 - 4): ";
-	cin >> max_arms;
+		cout << "Select how many arms you would like between (1 - 4): ";
+		cin >> max_arms;
 
-	if (max_arms < 1 || max_arms > 4) {
-	  cout << "Please enter a valid selection!\n\n";
-	}
-	else {
-	  break;
+		if (max_arms < 1 || max_arms > 4) {
+		  cout << "Please enter a valid selection!\n\n";
+		}
+		else {
+		  break;
+		}
 	}
 
 	Torso torso (name, model, cost, description, image_filename, battery_compartments, max_arms);
 	robot_parts.push_back(torso);
-	}
+	
+	file_data = name + "," + to_string(model) + "," + to_string(cost) + "," + description + "," + image_filename + "," + to_string(battery_compartments) + "," + to_string(max_arms) + "\n";
+
+	robot_part_file.open("robot_parts.txt", fstream::app);
+	robot_part_file << file_data;
+	robot_part_file.close();
 }
 
 void Shop::create_new_robot_head() {
@@ -273,6 +281,8 @@ void Shop::create_new_robot_head() {
 	double cost;
 	string description;
 	string image_filename;
+	
+	string file_data;
 
 	name = "Head";
 	model = 2;
@@ -296,6 +306,12 @@ void Shop::create_new_robot_head() {
 
 	Head head (name, model, cost, description, image_filename, power);
 	robot_parts.push_back(head);
+	
+	file_data = name + "," + to_string(model) + "," + to_string(cost) + "," + description + "," + image_filename + "," + to_string(power) + "\n";
+
+	robot_part_file.open("robot_parts.txt", fstream::app);
+	robot_part_file << file_data;
+	robot_part_file.close();
 }
 
 void Shop::create_new_robot_arm() {
@@ -304,6 +320,8 @@ void Shop::create_new_robot_arm() {
 	double cost;
 	string description;
 	string image_filename;
+	
+	string file_data;
 
       name = "Arm";
       model = 3;
@@ -325,8 +343,14 @@ void Shop::create_new_robot_arm() {
         }
       }
 
-      Arm arm (name, model, cost, description, image_filename, max_power);
-      robot_parts.push_back(arm);
+	Arm arm (name, model, cost, description, image_filename, max_power);
+	robot_parts.push_back(arm);
+	  
+	file_data = name + "," + to_string(model) + "," + to_string(cost) + "," + description + "," + image_filename + "," + to_string(max_power) + "\n";
+
+	robot_part_file.open("robot_parts.txt", fstream::app);
+	robot_part_file << file_data;
+	robot_part_file.close();
     }
 
 void Shop::create_new_robot_locomotor() {
@@ -335,6 +359,8 @@ void Shop::create_new_robot_locomotor() {
 	double cost;
 	string description;
 	string image_filename;
+	
+	string file_data;
 
       name = "Locomotor";
       model = 4;
@@ -356,8 +382,14 @@ void Shop::create_new_robot_locomotor() {
         }
       }
 
-      Locomotor locomotor (name, model, cost, description, image_filename, max_power);
-      robot_parts.push_back(locomotor);
+	Locomotor locomotor (name, model, cost, description, image_filename, max_power);
+	robot_parts.push_back(locomotor);
+      
+	file_data = name + "," + to_string(model) + "," + to_string(cost) + "," + description + "," + image_filename + "," + to_string(max_power) + "\n";
+
+	robot_part_file.open("robot_parts.txt", fstream::app);
+	robot_part_file << file_data;
+	robot_part_file.close();
     }
 
 void Shop::create_new_robot_battery() {
@@ -366,12 +398,14 @@ void Shop::create_new_robot_battery() {
 	double cost;
 	string description;
 	string image_filename;
+	
+	string file_data;
 
       name = "Battery";
       model = 5;
       cost = 5000;
       description = "The battery houses components that give the robot electrical power";
-      image_filename = "torso.png";
+      image_filename = "battery.png";
 
       double power_available;
       double max_energy;
@@ -398,18 +432,25 @@ void Shop::create_new_robot_battery() {
         else {
           break;
         }
+       }
 
-      Battery battery (name, model, cost, description, image_filename, power_available, max_energy);
-      robot_parts.push_back(battery);
-    }
+	Battery battery (name, model, cost, description, image_filename, power_available, max_energy);
+	robot_parts.push_back(battery);
+      
+	file_data = name + "," + to_string(model) + "," + to_string(cost) + "," + description + "," + image_filename + "," + to_string(power_available) + "," + to_string(max_energy) + "\n";
+
+	robot_part_file.open("robot_parts.txt", fstream::app);
+	robot_part_file << file_data;
+	robot_part_file.close();
 }
 
 void Shop::create_new_customer() {
-	//ofstream customer_file;
 	string name;
 	int customer_number;
 	string phone_number;
 	string email_address;
+	
+	string file_data;
 	
 	getchar();
 	cout << "Enter the name of the customer: ";
@@ -422,6 +463,12 @@ void Shop::create_new_customer() {
 	cout << "Enter the customer email address: ";
 	getline(cin, email_address);
 	
+	file_data = name + "," + to_string(customer_number) + "," + phone_number + "," + email_address + "\n";
+
+	customer_file.open("customers.txt", fstream::app);
+	customer_file << file_data;
+	customer_file.close();
+	
 	Customer customer(name, customer_number, phone_number, email_address);
 	customers.push_back(customer);
 	cout << "Customer created successfully\n\n";
@@ -431,11 +478,19 @@ void Shop::create_new_sales_associate() {
 	string name;
 	int employee_number;
 	
+	string file_data;
+	
 	getchar();
 	cout << "Enter the name of the sales associate: ";
 	getline(cin, name);
 	cout << "Enter the employee number: ";
 	cin >> employee_number;
+		
+	file_data = name + "," + to_string(employee_number) + "\n";
+
+	sales_associate_file.open("sales_associates.txt", fstream::app);
+	sales_associate_file << file_data;
+	sales_associate_file.close();
 	
 	Sales_associate sales_associate(name, employee_number);
 	sales_associates.push_back(sales_associate);

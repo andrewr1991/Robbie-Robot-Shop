@@ -1,0 +1,5 @@
+Torso,1,5000.000000,The torso is the main component of a robot,torso.png,2,3
+Head,2,2500.000000,The head houses the logic components of a robot,head.png,56.000000
+Arm,3,1500.000000,The arm is the way a robot physically interacts with its environment,arm.png,56.000000
+Locomotor,4,2000.000000,The locomotor houses the components that allow the robot to move about its environment,locomotor.png,65.000000
+Battery,5,5000.000000,The battery houses components that give the robot electrical power,battery.png,56.000000,74.000000

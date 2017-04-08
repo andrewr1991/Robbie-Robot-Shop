@@ -31,6 +31,10 @@ class Shop {
     vector <Robot_model> robot_models;
     vector <Customer> customers;
     vector <Sales_associate> sales_associates;
+    
+    ofstream sales_associate_file;
+    ofstream customer_file;
+    ofstream robot_part_file;
 
   public:
   	//Robot parts
