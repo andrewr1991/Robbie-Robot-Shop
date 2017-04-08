@@ -405,10 +405,16 @@ void Shop::create_new_robot_battery() {
 }
 
 void Shop::create_new_customer() {
+	ofstream customer_file;
 	string name;
 	int customer_number;
 	string phone_number;
 	string email_address;
+	
+	getline(cin, name);
+	cin >> customer_number;
+	getline(cin, phone_number);
+	getline(cin, email_address);
 	
 	Customer customer(name, customer_number, phone_number, email_address);
 	customers.push_back(customer);

@@ -16,9 +16,12 @@
 #include "customer.cpp"
 #include "sales_associate.h"
 #include "sales_associate.cpp"
+#include "order.h"
+#include "order.cpp"
 #include <string>
 #include <vector>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -47,6 +50,9 @@ class Shop {
     
     //Sales associates
     void create_new_sales_associate();
+    
+    //Orders
+    void create_new_order();
     
     
 };
