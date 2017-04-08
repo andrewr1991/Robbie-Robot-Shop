@@ -1,0 +1,1 @@
+Torso,1,5000.000000,The torso is the main component of a robot,torso.png,3,4

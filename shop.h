@@ -3,21 +3,13 @@
 #include "robot_model.h"
 #include "robot_part.h"
 #include "locomotor.h"
-#include "locomotor.cpp"
 #include "head.h"
-#include "head.cpp"
 #include "torso.h"
-#include "torso.cpp"
 #include "arm.h"
-#include "arm.cpp"
 #include "battery.h"
-#include "battery.cpp"
 #include "customer.h"
-#include "customer.cpp"
 #include "sales_associate.h"
-#include "sales_associate.cpp"
 #include "order.h"
-#include "order.cpp"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -32,10 +24,26 @@ class Shop {
     vector <Customer> customers;
     vector <Sales_associate> sales_associates;
     
-    ofstream sales_associate_file;
-    ofstream customer_file;
-    ofstream robot_part_file;
-
+    ofstream sales_associate_output_file;
+    
+    ifstream sales_associate_input_file;
+    
+    ofstream customer_output_file;
+    
+    ifstream customer_input_file;
+    
+    ofstream torso_output_file;
+    ofstream head_output_file;
+    ofstream arm_output_file;
+    ofstream locomotor_output_file;
+    ofstream battery_output_file;
+    
+    ifstream torso_input_file;
+    ifstream head_input_file;
+    ifstream arm_input_file;
+    ifstream locomotor_input_file;
+    ifstream battery_input_file;
+    
   public:
   	//Robot parts
     void create_new_robot_torso();
@@ -58,6 +66,7 @@ class Shop {
     //Orders
     void create_new_order();
     
-    
+    //Loading data
+    void loadData();
 };
 #endif

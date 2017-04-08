@@ -270,9 +270,9 @@ void Shop::create_new_robot_torso() {
 	
 	file_data = name + "," + to_string(model) + "," + to_string(cost) + "," + description + "," + image_filename + "," + to_string(battery_compartments) + "," + to_string(max_arms) + "\n";
 
-	robot_part_file.open("robot_parts.txt", fstream::app);
-	robot_part_file << file_data;
-	robot_part_file.close();
+	torso_output_file.open("torsos.txt", fstream::app);
+	torso_output_file << file_data;
+	torso_output_file.close();
 }
 
 void Shop::create_new_robot_head() {
@@ -309,9 +309,9 @@ void Shop::create_new_robot_head() {
 	
 	file_data = name + "," + to_string(model) + "," + to_string(cost) + "," + description + "," + image_filename + "," + to_string(power) + "\n";
 
-	robot_part_file.open("robot_parts.txt", fstream::app);
-	robot_part_file << file_data;
-	robot_part_file.close();
+	head_output_file.open("heads.txt", fstream::app);
+	head_output_file << file_data;
+	head_output_file.close();
 }
 
 void Shop::create_new_robot_arm() {
@@ -348,9 +348,9 @@ void Shop::create_new_robot_arm() {
 	  
 	file_data = name + "," + to_string(model) + "," + to_string(cost) + "," + description + "," + image_filename + "," + to_string(max_power) + "\n";
 
-	robot_part_file.open("robot_parts.txt", fstream::app);
-	robot_part_file << file_data;
-	robot_part_file.close();
+	arm_output_file.open("arms.txt", fstream::app);
+	arm_output_file << file_data;
+	arm_output_file.close();
     }
 
 void Shop::create_new_robot_locomotor() {
@@ -387,9 +387,9 @@ void Shop::create_new_robot_locomotor() {
       
 	file_data = name + "," + to_string(model) + "," + to_string(cost) + "," + description + "," + image_filename + "," + to_string(max_power) + "\n";
 
-	robot_part_file.open("robot_parts.txt", fstream::app);
-	robot_part_file << file_data;
-	robot_part_file.close();
+	locomotor_output_file.open("locomotors.txt", fstream::app);
+	locomotor_output_file << file_data;
+	locomotor_output_file.close();
     }
 
 void Shop::create_new_robot_battery() {
@@ -439,9 +439,9 @@ void Shop::create_new_robot_battery() {
       
 	file_data = name + "," + to_string(model) + "," + to_string(cost) + "," + description + "," + image_filename + "," + to_string(power_available) + "," + to_string(max_energy) + "\n";
 
-	robot_part_file.open("robot_parts.txt", fstream::app);
-	robot_part_file << file_data;
-	robot_part_file.close();
+	battery_output_file.open("batterys.txt", fstream::app);
+	battery_output_file << file_data;
+	battery_output_file.close();
 }
 
 void Shop::create_new_customer() {
@@ -465,9 +465,9 @@ void Shop::create_new_customer() {
 	
 	file_data = name + "," + to_string(customer_number) + "," + phone_number + "," + email_address + "\n";
 
-	customer_file.open("customers.txt", fstream::app);
-	customer_file << file_data;
-	customer_file.close();
+	customer_output_file.open("customers.txt", fstream::app);
+	customer_output_file << file_data;
+	customer_output_file.close();
 	
 	Customer customer(name, customer_number, phone_number, email_address);
 	customers.push_back(customer);
@@ -488,14 +488,41 @@ void Shop::create_new_sales_associate() {
 		
 	file_data = name + "," + to_string(employee_number) + "\n";
 
-	sales_associate_file.open("sales_associates.txt", fstream::app);
-	sales_associate_file << file_data;
-	sales_associate_file.close();
+	sales_associate_output_file.open("sales_associates.txt", fstream::app);
+	sales_associate_output_file << file_data;
+	sales_associate_output_file.close();
 	
 	Sales_associate sales_associate(name, employee_number);
 	sales_associates.push_back(sales_associate);
 	cout << "Sales associate created successfully\n\n";
 }
+
+void Shop::loadData() {
+	//Variables common to all data
+	string name_data;
+	string model_number_data;
+	string cost_data;
+	string description_data;
+	string image_filename_data;
+	
+	//Torso parts
+	string battery_compartments_data;
+	string max_arms_data;
+	
+	torso_input_file.open("torsos.txt");
+	
+	getline(torso_input_file, name_data, ',');
+	getline(torso_input_file, model_number_data, ',');
+	getline(torso_input_file, cost_data, ',');
+	getline(torso_input_file, description_data, ',');
+	getline(torso_input_file, image_filename_data, ',');
+	getline(torso_input_file, battery_compartments_data, ',');
+	getline(torso_input_file, max_arms_data, ',');
+	
+	Torso torso (name_data, stoi(model_number_data), stod(cost_data), description_data, image_filename_data, stoi(battery_compartments_data), stoi(max_arms_data));
+	robot_parts.push_back(torso);
+}
+	
 	
 	
 	

@@ -8,6 +8,8 @@ using namespace std;
 
 int main() {
 	Shop shop;
+	shop.loadData();
+	
 	int main_menu_selection;
 	int robot_part_selection;
 	int robot_model_selection;
