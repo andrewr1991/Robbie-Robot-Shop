@@ -1,1 +1,0 @@
-Battery,5,5000.000000,The battery houses components that give the robot electrical power,battery.png,76.000000,87.000000

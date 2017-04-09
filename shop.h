@@ -14,6 +14,8 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
 
 using namespace std;
 
@@ -23,26 +25,6 @@ class Shop {
     vector <Robot_model> robot_models;
     vector <Customer> customers;
     vector <Sales_associate> sales_associates;
-    
-    ofstream sales_associate_output_file;
-    
-    ifstream sales_associate_input_file;
-    
-    ofstream customer_output_file;
-    
-    ifstream customer_input_file;
-    
-    ofstream torso_output_file;
-    ofstream head_output_file;
-    ofstream arm_output_file;
-    ofstream locomotor_output_file;
-    ofstream battery_output_file;
-    
-    ifstream torso_input_file;
-    ifstream head_input_file;
-    ifstream arm_input_file;
-    ifstream locomotor_input_file;
-    ifstream battery_input_file;
     
   public:
   	//Robot parts
@@ -65,10 +47,5 @@ class Shop {
     
     //Orders
     void create_new_order();
-    
-    //Loading data
-    void loadData();
-    
-    void vectorSize();
 };
 #endif

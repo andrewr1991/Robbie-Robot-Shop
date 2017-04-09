@@ -1,9 +1,18 @@
 #ifndef BATTERY_H
 #define BATTERY_H 2017
 #include "robot_part.h"
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
 
 class Battery : public Robot_part {
 	private:
+		friend class boost::serialization::access;
+		template<class Archive>
+		void serialize(Archive & ar, const unsigned int version) {
+        ar & power_available;
+        ar & max_energy;
+		}
+		
 		double power_available;
 		double max_energy;
 
