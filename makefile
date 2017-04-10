@@ -1,7 +1,6 @@
 # Makefile for Robbie Robot Shop
 CXXFLAGS += --std=c++11
 
-#g++ main.cpp -lboost_serialization
 all: main
 
 debug: CXXFLAGS += -g
