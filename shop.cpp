@@ -573,4 +573,86 @@ void Shop::loadData() {
 		Torso torso (name_data, stoi(model_number_data), stod(cost_data), description_data, image_filename_data, stoi(battery_compartments_data), stoi(max_arms_data));
 		robot_parts.push_back(torso);
 	}
+	
+		string power_data;
+		
+		head_input_file.open("heads.txt");
+
+	while(true) {
+		if (head_input_file.eof()) {
+			break;
+		}
+
+		getline(head_input_file, name_data, ',');
+		getline(head_input_file, model_number_data, ',');
+		getline(head_input_file, cost_data, ',');
+		getline(head_input_file, description_data, ',');
+		getline(head_input_file, image_filename_data, ',');
+		getline(head_input_file, power_data);
+
+		Head head (name_data, stoi(model_number_data), stod(cost_data), description_data, image_filename_data, stod(power_data));
+		robot_parts.push_back(head);
+	}
+		
+		string max_power_data;
+	
+		arm_input_file.open("arms.txt");
+
+	while(true) {
+		if (arm_input_file.eof()) {
+			break;
+		}
+
+		getline(arm_input_file, name_data, ',');
+		getline(arm_input_file, model_number_data, ',');
+		getline(arm_input_file, cost_data, ',');
+		getline(arm_input_file, description_data, ',');
+		getline(arm_input_file, image_filename_data, ',');
+		getline(arm_input_file, max_power_data);
+
+		Arm arm (name_data, stoi(model_number_data), stod(cost_data), description_data, image_filename_data, stod(max_power_data));
+		robot_parts.push_back(arm);
+	}
+	
+		max_power_data;
+		
+		locomotor_input_file.open("locomotor.txt");
+
+	while(true) {
+		if (locomotor_input_file.eof()) {
+			break;
+		}
+
+		getline(locomotor_input_file, name_data, ',');
+		getline(locomotor_input_file, model_number_data, ',');
+		getline(locomotor_input_file, cost_data, ',');
+		getline(locomotor_input_file, description_data, ',');
+		getline(locomotor_input_file, image_filename_data, ',');
+		getline(locomotor_input_file, max_power_data);
+
+		Locomotor locomotor (name_data, stoi(model_number_data), stod(cost_data), description_data, image_filename_data, stod(max_power_data));
+		robot_parts.push_back(locomotor);
+	}
+	
+		string power_available_data;
+		string max_energy_data;
+	
+		torso_input_file.open("battery.txt");
+
+	while(true) {
+		if (battery_input_file.eof()) {
+			break;
+		}
+
+		getline(battery_input_file, name_data, ',');
+		getline(battery_input_file, model_number_data, ',');
+		getline(battery_input_file, cost_data, ',');
+		getline(battery_input_file, description_data, ',');
+		getline(battery_input_file, image_filename_data, ',');
+		getline(battery_input_file, power_available_data, ',');
+		getline(battery_input_file, max_energy_data);
+
+		Battery battery (name_data, stoi(model_number_data), stod(cost_data), description_data, image_filename_data, stod(power_available_data), stod(max_energy_data));
+		robot_parts.push_back(battery);
+	}
 }
