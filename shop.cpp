@@ -478,6 +478,11 @@ void Shop::create_new_customer() {
 	cout << "Customer created successfully\n\n";
 }
 
+void Shop::create_new_order() {
+	//Constructor for new order
+	cout << "New order created!\n\n";
+}
+
 void Shop::create_new_sales_associate() {
 	string name;
 	int employee_number;

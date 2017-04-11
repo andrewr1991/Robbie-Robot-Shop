@@ -12,7 +12,7 @@ int main() {
 	int main_menu_selection;
 	int robot_part_selection;
 	int robot_model_selection;
-	string main_menu = "1: Select from pre-built robot models\n2: Create new robot part\n3: Create a new customer\n4: Create new sales associate\nMake a selection: ";
+	string main_menu = "1: Select from pre-built robot models\n2: Create new robot part\n3: Create a new customer\n4: Create new sales associate\n5: Create a new order\nMake a selection: ";
 
 	string menu_robot_models = "1. Robot 9000: Best specs. available\n2. Robot 5000: Average specs but still a great value\n";
 	menu_robot_models += "3. Robot 2000: Minimal specs. Great robot for beginners\n0: To return to the previous menu\n";
@@ -96,6 +96,9 @@ int main() {
 		}
 		else if (main_menu_selection == 4) {
 			shop.create_new_sales_associate();
+		}
+		else if (main_menu_selection == 5) {
+			shop.create_new_order();
 		}
 		else if (main_menu_selection == 0) {
 			exit(1);
