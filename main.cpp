@@ -48,12 +48,15 @@ int main() {
 				cin >> robot_model_selection;
 				if (robot_model_selection == 1) {
 					shop.create_new_robot_model_1();
+					break;
 				}
 				else if (robot_model_selection == 2) {
 					shop.create_new_robot_model_2();
+					break;
 				}
 				else if (robot_model_selection == 3) {
 					shop.create_new_robot_model_3();
+					break;
 				}
 				else if (robot_model_selection == 0) {
 					break;
