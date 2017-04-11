@@ -23,6 +23,7 @@ class Shop {
     vector <Robot_model> robot_models;
     vector <Customer> customers;
     vector <Sales_associate> sales_associates;
+    vector <Order> orders;
 
   public:
     //File pointers
@@ -67,7 +68,8 @@ class Shop {
 
     //Orders
     void create_new_order();
-
+	
+	//Loading data
     void loadData();
 };
 #endif

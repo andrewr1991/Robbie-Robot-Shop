@@ -478,11 +478,6 @@ void Shop::create_new_customer() {
 	cout << "Customer created successfully\n\n";
 }
 
-void Shop::create_new_order() {
-	//Constructor for new order
-	cout << "New order created!\n\n";
-}
-
 void Shop::create_new_sales_associate() {
 	string name;
 	int employee_number;
@@ -504,6 +499,48 @@ void Shop::create_new_sales_associate() {
 	Sales_associate sales_associate(name, employee_number);
 	sales_associates.push_back(sales_associate);
 	cout << "Sales associate created successfully\n\n";
+}
+
+void Shop::create_new_order() {
+	int robot_model_selection;
+	string customer_name;
+	int customer_number = 1;
+	string customer_phone_number;
+	string customer_email_address;
+	int order_number = 10;
+	string date = "4102017";
+	double cost = 5000;
+	int status = 1;
+	
+	getchar();
+	cout << "Enter your name: ";
+	getline(cin, customer_name);
+	cout << "Enter your phone number: ";
+	getline(cin, customer_phone_number);
+	cout << "Enter your email address: ";
+	getline(cin, customer_email_address);
+	cout << "New customer created!" << endl;
+	
+	Customer customer (customer_name, customer_number, customer_phone_number, customer_email_address);
+	customers.push_back(customer);
+	
+	cout << "Which robot model would you like: ";
+	cin >> robot_model_selection;
+	if (robot_model_selection == 1) {
+		create_new_robot_model_1();
+	}
+	else if (robot_model_selection == 2) {
+		create_new_robot_model_2();
+	}
+	else if (robot_model_selection == 3) {
+		create_new_robot_model_3();
+	}
+	
+	Sales_associate sales_associate("John", 19);
+	
+	Order order(order_number, date, customer, sales_associate, robot_models[0], cost, status);
+	orders.push_back(order);
+	cout << "New order created!\n\n"; 
 }
 
 void Shop::loadData() {
