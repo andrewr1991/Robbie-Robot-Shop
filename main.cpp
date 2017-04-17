@@ -84,7 +84,7 @@ void create_robot_torso(Fl_Widget* w, void* p) {
 	
 	robot_torso_dlg->hide();
 	
-	shop.create_new_robot_torso(name, stoi(battery_compartments), stoi(max_arms));
+	//shop.create_new_robot_torso(name, stoi(battery_compartments), stoi(max_arms));
 }
 
 void cancel_robot_torso(Fl_Widget* w, void* p) {
@@ -129,11 +129,8 @@ void create_robot_head(Fl_Widget* w, void* p) {
 	string name = robot_head_dlg->name();
 	string power = robot_head_dlg->power();
 	
-	/*
-	Patron pat (name, phone);
-	robot_arm_dlg->hide();
-	library.add_patron(pat);
-	*/
+	robot_head_dlg->hide();
+	//shop.create_new_robot_head(name, stod(power));
 	
 }
 
@@ -180,11 +177,8 @@ void create_robot_arm(Fl_Widget* w, void* p) {
 	string name = robot_arm_dlg->name();
 	string max_power = robot_arm_dlg->max_power();
 	
-	/*
-	Patron pat (name, phone);
 	robot_arm_dlg->hide();
-	library.add_patron(pat);
-	*/
+	//shop.create_new_robot_head(name, stod(max_power));
 	
 }
 
@@ -230,11 +224,8 @@ void create_robot_locomotor(Fl_Widget* w, void* p) {
 	string name = robot_locomotor_dlg->name();
 	string max_power = robot_locomotor_dlg->max_power();
 	
-	/*
-	Patron pat (name, phone);
-	robot_arm_dlg->hide();
-	library.add_patron(pat);
-	*/
+	robot_locomotor_dlg->hide();
+	//shop.create_new_robot_head(name, stod(max_power));
 	
 }
 
@@ -280,11 +271,8 @@ void create_robot_battery(Fl_Widget* w, void* p) {
 	string name = robot_battery_dlg->name();
 	string power_available = robot_battery_dlg->power_available();
 	
-	/*
-	Patron pat (name, phone);
-	robot_arm_dlg->hide();
-	library.add_patron(pat);
-	*/
+	robot_battery_dlg->hide();
+	//shop.create_new_robot_head(name, stod(power_available), stod(max_energy));
 	
 }
 
@@ -304,9 +292,9 @@ int execute_robot_part_cmd() {
 		msg += "===============\n\n";
 		msg += "(1) Create new robot Torso\n";
 		msg += "(2) Create new robot Head\n";
-		msg += "(2) Create new robot Arm\n";
-		msg += "(2) Create new robot Locomotor\n";
-		msg += "(2) Create new robot Battery\n";
+		msg += "(3) Create new robot Arm\n";
+		msg += "(4) Create new robot Locomotor\n";
+		msg += "(5) Create new robot Battery\n";
 		msg += "(9) Help\n";
 		msg += "(0) Back\n\n";
 		msg+= "Command?";
@@ -344,6 +332,35 @@ int execute_robot_part_cmd() {
 	}
 }
 
+int execute_robot_model_cmd() {
+	string msg;
+	string command;
+	
+	while (true) {
+		msg = "===============\n";
+		msg += "Robot Model Shop\n";
+		msg += "===============\n\n";
+		msg += "(1) Create new robot Model 1\n";
+		msg += "(2) Create new robot Model 2\n";
+		msg += "(3) Create new robot Model 3\n";
+		msg += "(9) Help\n";
+		msg += "(0) Back\n\n";
+		msg+= "Command?";
+		
+		command = fl_input(msg.c_str());
+		
+		if (command == "1") {
+			//shop.create_new_robot_model_1();
+		}
+		else if (command == "2") {
+			//shop.create_new_robot_model_2();
+		}
+		else if (command == "3") {
+			//shop.create_new_robot_model_3();
+		}
+	}
+}
+
 int show_menu() {
 	
 	string command;
@@ -371,6 +388,9 @@ int show_menu() {
 		
 		if (command == "1") {
 			execute_robot_part_cmd();
+		}
+		else if (command == "2") {
+			execute_robot_model_cmd();
 		}
 	}
 }

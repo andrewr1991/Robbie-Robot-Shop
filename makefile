@@ -6,8 +6,6 @@ all: main
 debug: CXXFLAGS += -g
 debug: main
 
-Bsymbolic-functions -lfltk -lX11
-
 rebuild: clean main
 
 main: main.o head.o locomotor.o torso.o battery.o arm.o robot_part.o robot_model.o shop.o customer.o sales_associate.o order.o

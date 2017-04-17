@@ -248,8 +248,7 @@ void Shop::create_new_robot_torso(string name, int battery_compartments, int max
 	torso_output_file.close();
 }
 
-void Shop::create_new_robot_head() {
-	string name;
+void Shop::create_new_robot_head(string name, double power) {
 	int model;
 	double cost;
 	string description;
@@ -263,20 +262,6 @@ void Shop::create_new_robot_head() {
 	description = "The head houses the logic components of a robot";
 	image_filename = "head.png";
 
-	double power;
-
-	while(true) {
-		cout << "Select the amount of power you would like between (25 - 100): ";
-		cin >> power;
-
-		if (power < 25 || power > 100) {
-		  cout << "Please enter a valid selection!\n\n";
-		}
-		else {
-		  break;
-		}
-	}
-
 	Head head (name, model, cost, description, image_filename, power);
 	robot_parts.push_back(head);
 
@@ -287,8 +272,7 @@ void Shop::create_new_robot_head() {
 	head_output_file.close();
 }
 
-void Shop::create_new_robot_arm() {
-	string name;
+void Shop::create_new_robot_arm(string name, double max_power) {
 	int model;
 	double cost;
 	string description;
@@ -296,25 +280,11 @@ void Shop::create_new_robot_arm() {
 
 	string file_data;
 
-      name = "Arm";
-      model = 3;
-      cost = 1500;
-      description = "The arm is the way a robot physically interacts with its environment";
-      image_filename = "arm.png";
-
-      double max_power;
-
-      while(true) {
-        cout << "Select the amount of power you would like between (25 - 100): ";
-        cin >> max_power;
-
-        if (max_power < 25 || max_power > 100) {
-          cout << "Please enter a valid selection!\n\n";
-        }
-        else {
-          break;
-        }
-      }
+	name = "Arm";
+	model = 3;
+	cost = 1500;
+	description = "The arm is the way a robot physically interacts with its environment";
+	image_filename = "arm.png";
 
 	Arm arm (name, model, cost, description, image_filename, max_power);
 	robot_parts.push_back(arm);
@@ -324,10 +294,9 @@ void Shop::create_new_robot_arm() {
 	arm_output_file.open("arms.txt", fstream::app);
 	arm_output_file << file_data;
 	arm_output_file.close();
-    }
+}
 
-void Shop::create_new_robot_locomotor() {
-	string name;
+void Shop::create_new_robot_locomotor(string name, double max_power) {
 	int model;
 	double cost;
 	string description;
@@ -335,25 +304,11 @@ void Shop::create_new_robot_locomotor() {
 
 	string file_data;
 
-      name = "Locomotor";
-      model = 4;
-      cost = 2000;
-      description = "The locomotor houses the components that allow the robot to move about its environment";
-      image_filename = "locomotor.png";
-
-      double max_power;
-
-      while(true) {
-        cout << "Select the amount of power you would like between (25 - 100): ";
-        cin >> max_power;
-
-        if (max_power < 25 || max_power > 100) {
-          cout << "Please enter a valid selection!\n\n";
-        }
-        else {
-          break;
-        }
-      }
+	name = "Locomotor";
+	model = 4;
+	cost = 2000;
+	description = "The locomotor houses the components that allow the robot to move about its environment";
+	image_filename = "locomotor.png";
 
 	Locomotor locomotor (name, model, cost, description, image_filename, max_power);
 	robot_parts.push_back(locomotor);
@@ -363,10 +318,9 @@ void Shop::create_new_robot_locomotor() {
 	locomotor_output_file.open("locomotors.txt", fstream::app);
 	locomotor_output_file << file_data;
 	locomotor_output_file.close();
-    }
+}
 
-void Shop::create_new_robot_battery() {
-	string name;
+void Shop::create_new_robot_battery(string name, double power_available, double max_energy) {
 	int model;
 	double cost;
 	string description;
@@ -374,42 +328,13 @@ void Shop::create_new_robot_battery() {
 
 	string file_data;
 
-      name = "Battery";
-      model = 5;
-      cost = 5000;
-      description = "The battery houses components that give the robot electrical power";
-      image_filename = "battery.png";
+	name = "Battery";
+	model = 5;
+	cost = 5000;
+	description = "The battery houses components that give the robot electrical power";
+	image_filename = "battery.png";
 
-      double power_available;
-      double max_energy;
-
-      while(true) {
-        cout << "Select the amount of power you would like between (25 - 100): ";
-        cin >> power_available;
-
-        if (power_available < 25 || power_available > 100) {
-          cout << "Please enter a valid selection!\n\n";
-        }
-        else {
-          break;
-        }
-      }
-
-      while(true) {
-        cout << "Select the amount of energy you would like between (25 - 100): ";
-        cin >> max_energy;
-
-        if (max_energy < 25 || max_energy > 100) {
-          cout << "Please enter a valid selection!\n\n";
-        }
-        else {
-          break;
-        }
-       }
-
-	std::ofstream ofs("file.txt");
-
-	const Battery battery (name, model, cost, description, image_filename, power_available, max_energy);
+	Battery battery (name, model, cost, description, image_filename, power_available, max_energy);
 	robot_parts.push_back(battery);
 
 	file_data = name + "," + to_string(model) + "," + to_string(cost) + "," + description + "," + image_filename + "," + to_string(power_available) + "," + to_string(max_energy) + "\n";
