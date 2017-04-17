@@ -3,112 +3,116 @@
 #include "robot_part.h"
 #include <iostream>
 #include <string>
+#include <FL/Fl.H>
+#include <FL/fl_ask.H>
+#include <FL/Fl_Window.H>
+#include <FL/Fl_Box.H>
+#include <FL/Fl_Input.H>
+#include <FL/Fl_Multiline_Input.H>
+#include <FL/Fl_Return_Button.H>
+#include <FL/Fl_Button.H>
+#include <FL/Fl_Value_Input.H>
+#include <FL/Fl_Menu_Bar.H>
+
+Shop shop;
+Fl_Window *win;
 
 using namespace std;
 
+void create_robot_arm(Fl_Widget* w, void* p);
+void cancel_robot_arm(Fl_Widget* w, void* p);
+
+
+class Robot_arm_Dialog {
+	public:
+		Robot_arm_Dialog() {
+			dialog = new Fl_Window(340, 340, "New Robot Arm");
+				a_name = new Fl_Input(120, 10, 210, 25, "Name:");
+				a_name->align(FL_ALIGN_LEFT);
+				
+				a_max_power = new Fl_Input(120, 40, 210, 25, "Max power (1-3):");
+				a_max_power->align(FL_ALIGN_LEFT);
+				
+				a_create = new Fl_Return_Button(145, 70, 120, 25, "Create Arm");
+				a_create->callback((Fl_Callback *)create_robot_arm, 0);
+				
+				a_cancel = new Fl_Button(270, 100, 60, 25, "Cancel");
+				a_cancel->callback((Fl_Callback *)cancel_robot_arm, 0);
+				dialog->end();
+				dialog->set_non_modal();
+		}
+	
+		void show() {dialog->show();}
+		void hide() {dialog->hide();}
+		string name() {return a_name->value();}
+		string max_power() {return a_max_power->value();}
+	
+	private:
+		Fl_Window *dialog;
+		Fl_Input *a_name;
+		Fl_Input *a_max_power;
+		Fl_Return_Button *a_create;
+		Fl_Button *a_cancel;
+};
+
+Robot_arm_Dialog *robot_arm_dlg;
+
+void create_robot_arm(Fl_Widget* w, void* p) {
+	string name = robot_arm_dlg->name();
+	
+	string result;
+	/*
+	Patron pat (name, phone);
+	robot_arm_dlg->hide();
+	library.add_patron(pat);
+	*/
+	
+}
+
+void cancel_robot_arm(Fl_Widget* w, void* p) {
+	robot_arm_dlg->hide();
+}
+
 int main() {
-	Shop shop;
 	
-	int main_menu_selection;
-	int robot_part_selection;
-	int robot_model_selection;
-	string main_menu = "1: Select from pre-built robot models\n2: Create new robot part\n3: Create a new customer\n4: Create new sales associate\n5: Create a new order\nMake a selection: ";
-
-	string menu_robot_models = "1. Robot 9000: Best specs. available\n2. Robot 5000: Average specs but still a great value\n";
-	menu_robot_models += "3. Robot 2000: Minimal specs. Great robot for beginners\n0: To return to the previous menu\n";
-	string menu_robot_model_selection = "\nWhich robot would you like: ";
-
-	string model_1 = "Model 9000\n\nCost: $16,000\nMax Speed: 100\nMax Battery: 100\nTorso:\n- 3 battery compartments\n";
-	model_1 += "- 4 arms\nHead:\n- 100 head power\nArm:\n- 100 arm power\nLocomotor:\n- 100 locomotor power\n";
-	model_1 += "Battery:\n- 100 power available\n- 100 max energy\n";
+	string command;
+	string msg;
 	
-	string model_2 = "Model 5000\n\nCost: $8,000\nMax Speed: 50\nMax Battery: 50\nTorso:\n- 2 battery compartments\n";
-	model_2 += "- 2 arms\nHead:\n- 50 head power\nArm:\n- 50 arm power\nLocomotor:\n- 50 locomotor power\n";
-	model_2 += "Battery:\n- 50 power available\n- 50 max energy\n";
-	
-	string model_3 = "Model 2000\n\nCost: $4,250\nMax Speed: 25\nMax Battery: 25\nTorso:\n- 1 battery compartments\n";
-	model_3 += "- 1 arm\nHead:\n- 25 head power\nArm:\n- 25 arm power\nLocomotor:\n- 25 locomotor power\n";
-	model_3 += "Battery:\n- 25 power available\n- 25 max energy\n";
-
-	string menu_robot_parts = "\n1. Robot torso\n2. Robot head\n3. Robot arm\n4. Robot locomotor\n";
-	menu_robot_parts += "5. Robot battery\nWhich robot part would you like to create: ";
-	string invalid_selection = "\nPlease make a valid selection\n";
-
 	while (true) {
-		cout << main_menu;
-		cin >> main_menu_selection;
+	
+		msg = "=======================\n";
+		msg += "C1325 Robbie Robot Shop\n";
+		msg += "=======================\n\n";
+		msg += "(1) Create new robot part\n";
+		msg += "(2) Create new robot model\n";
+		msg += "(3) Create new customer\n";
+		msg += "(4) Create new sales associate\n";
+		msg += "(5) Create new order\n";
+		msg += "(9) Help\n";
+		msg += "(0) Exit\n\n";
+		msg+= "Command?";
 
-		if (main_menu_selection == 1) {
-			while(true) {
-				cout << menu_robot_models;
-				cout << model_1;
-				cout << model_2;
-				cout << model_3;
-				cout << menu_robot_model_selection;
-				cin >> robot_model_selection;
-				if (robot_model_selection == 1) {
-					shop.create_new_robot_model_1();
-					break;
-				}
-				else if (robot_model_selection == 2) {
-					shop.create_new_robot_model_2();
-					break;
-				}
-				else if (robot_model_selection == 3) {
-					shop.create_new_robot_model_3();
-					break;
-				}
-				else if (robot_model_selection == 0) {
-					break;
-				}
-				else {
-					cout << invalid_selection;
-				}
-			}
-		}
-		else if (main_menu_selection == 2) {
-			while(true) {
-				cout << menu_robot_parts;
-				cin >> robot_part_selection;
+		Fl_Window *beacon = new Fl_Window(1, 1);
+		beacon->show();
+		beacon->hide();
 
-				if (robot_part_selection == 1) {
-					shop.create_new_robot_torso();
-				}
-				else if (robot_part_selection == 2) {
-					shop.create_new_robot_head();
-				}
-				else if (robot_part_selection == 3) {
-					shop.create_new_robot_arm();
-				}
-				else if (robot_part_selection == 4) {
-					shop.create_new_robot_locomotor();
-				}
-				else if (robot_part_selection == 5) {
-					shop.create_new_robot_battery();
-				}
-				else if (robot_part_selection == 0) {
-					break;
-				}
-				else {
-					cout << invalid_selection;
-				}
-			}
-		}
-		else if (main_menu_selection == 3) {
-			shop.create_new_customer();
-		}
-		else if (main_menu_selection == 4) {
-			shop.create_new_sales_associate();
-		}
-		else if (main_menu_selection == 5) {
-			shop.create_new_order();
-		}
-		else if (main_menu_selection == 0) {
-			exit(1);
-		}
-		else {
-			cout << invalid_selection;
+		fl_message_icon()->label("L");
+		command = fl_input(msg.c_str());
+		
+		if (command == "1") {
+			robot_arm_dlg = new Robot_arm_Dialog{};
+			robot_arm_dlg->show();
+			return Fl::run();
 		}
 	}
-	return 0;
+	
+	const int x = 360;
+	const int y = 220;
+
+	win = new Fl_Window{ x, y, "Robbie Robot Shop" };
+	win->color(FL_WHITE);
+
+	win->end();
+	win->show();
+	return(Fl::run());
 }
