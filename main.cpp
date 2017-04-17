@@ -209,7 +209,7 @@ class Robot_locomotor_Dialog {
 		void show() {dialog->show();}
 		void hide() {dialog->hide();}
 		string name() {return l_name->value();}
-		string max_power() {return l_power->value();}
+		string max_power() {return l_max_power->value();}
 	
 	private:
 		Fl_Window *dialog;
@@ -287,18 +287,55 @@ void cancel_robot_battery(Fl_Widget* w, void* p) {
 	robot_battery_dlg->hide();
 }
 
-/*************** Execute Command Function ****************/
+/*************** Execute Robot Part Command Function ****************/
 
-int execute_cmd(string command) {
-	if (command == "1") {
-		robot_torso_dlg = new Robot_torso_Dialog{};
-		robot_torso_dlg->show();
-		return Fl::run();
-	}
-	else if (command == "2") {
-		robot_arm_dlg = new Robot_arm_Dialog{};
-		robot_arm_dlg->show();
-		return Fl::run();
+int execute_robot_part_cmd() {
+	string msg;
+	string command;
+	
+	while (true) {
+		msg = "===============\n";
+		msg += "Robot Part Shop\n";
+		msg += "===============\n\n";
+		msg += "(1) Create new robot Torso\n";
+		msg += "(2) Create new robot Head\n";
+		msg += "(2) Create new robot Arm\n";
+		msg += "(2) Create new robot Locomotor\n";
+		msg += "(2) Create new robot Battery\n";
+		msg += "(9) Help\n";
+		msg += "(0) Back\n\n";
+		msg+= "Command?";
+		
+		command = fl_input(msg.c_str());
+		
+		if (command == "1") {
+			robot_torso_dlg = new Robot_torso_Dialog{};
+			robot_torso_dlg->show();
+			return Fl::run();
+		}
+		else if (command == "2") {
+			robot_head_dlg = new Robot_head_Dialog{};
+			robot_head_dlg->show();
+			return Fl::run();
+		}
+			else if (command == "3") {
+			robot_arm_dlg = new Robot_arm_Dialog{};
+			robot_arm_dlg->show();
+			return Fl::run();
+		}
+			else if (command == "4") {
+			robot_locomotor_dlg = new Robot_locomotor_Dialog{};
+			robot_locomotor_dlg->show();
+			return Fl::run();
+		}
+			else if (command == "5") {
+			robot_battery_dlg = new Robot_battery_Dialog{};
+			robot_battery_dlg->show();
+			return Fl::run();
+		}
+		else if (command == 0) {
+			break;
+		}
 	}
 }
 
@@ -306,6 +343,7 @@ int show_menu() {
 	
 	string command;
 	string msg;
+	string robot_shop_cmd;
 	
 	while (true) {
 		msg = "=======================\n";
@@ -324,10 +362,11 @@ int show_menu() {
 		beacon->show();
 		beacon->hide();
 
-		fl_message_icon()->label("L");
 		command = fl_input(msg.c_str());
 		
-		execute_cmd(command);
+		if (command == "1") {
+			execute_robot_part_cmd();
+		}
 	}
 }
 	
