@@ -224,9 +224,8 @@ void Shop::create_new_robot_model_3() {
 	robot_models.push_back(model_3);
 }
 
-void Shop::create_new_robot_torso() {
+void Shop::create_new_robot_torso(string name, int battery_compartments, int max_arms) {
 
-	string name;
 	int model;
 	double cost;
 	string description;
@@ -234,38 +233,10 @@ void Shop::create_new_robot_torso() {
 
 	string file_data;
 
-	name = "Torso";
 	model = 1;
 	cost = 5000;
 	description = "The torso is the main component of a robot";
 	image_filename = "torso.png";
-
-	int battery_compartments;
-	int max_arms;
-
-	while(true) {
-		cout << "Select how many battery compartments you would like between (1 - 3): ";
-		cin >> battery_compartments;
-
-		if (battery_compartments < 1 || battery_compartments > 3) {
-		  cout << "Please enter a valid selection!\n\n";
-		}
-		else {
-		  break;
-		}
-	}
-
-	while(true) {
-		cout << "Select how many arms you would like between (1 - 4): ";
-		cin >> max_arms;
-
-		if (max_arms < 1 || max_arms > 4) {
-		  cout << "Please enter a valid selection!\n\n";
-		}
-		else {
-		  break;
-		}
-	}
 
 	Torso torso (name, model, cost, description, image_filename, battery_compartments, max_arms);
 	robot_parts.push_back(torso);

@@ -49,7 +49,7 @@ class Shop {
     ifstream sales_associate_input_file;
 
   	//Robot parts
-    void create_new_robot_torso();
+    void create_new_robot_torso(string name, int battery_compartments, int max_arms);
     void create_new_robot_head();
     void create_new_robot_arm();
     void create_new_robot_locomotor();

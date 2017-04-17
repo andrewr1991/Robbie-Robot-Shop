@@ -29,6 +29,14 @@ void create_robot_locomotor(Fl_Widget* w, void* p);
 void cancel_robot_locomotor(Fl_Widget* w, void* p);
 void create_robot_battery(Fl_Widget* w, void* p);
 void cancel_robot_battery(Fl_Widget* w, void* p);
+void create_robot_model(Fl_Widget* w, void* p);
+void cancel_robot_model(Fl_Widget* w, void* p);
+void create_robot_customer(Fl_Widget* w, void* p);
+void cancel_robot_customer(Fl_Widget* w, void* p);
+void create_robot_sales_associate(Fl_Widget* w, void* p);
+void cancel_robot_sales_associate(Fl_Widget* w, void* p);
+void create_robot_order(Fl_Widget* w, void* p);
+void cancel_robot_order(Fl_Widget* w, void* p);
 
 class Robot_torso_Dialog {
 	public:
@@ -74,12 +82,9 @@ void create_robot_torso(Fl_Widget* w, void* p) {
 	string battery_compartments = robot_torso_dlg->battery_compartments();
 	string max_arms = robot_torso_dlg->max_arms();
 	
-	/*
-	Patron pat (name, phone);
-	robot_arm_dlg->hide();
-	library.add_patron(pat);
-	*/
+	robot_torso_dlg->hide();
 	
+	shop.create_new_robot_torso(name, stoi(battery_compartments), stoi(max_arms));
 }
 
 void cancel_robot_torso(Fl_Widget* w, void* p) {
@@ -333,7 +338,7 @@ int execute_robot_part_cmd() {
 			robot_battery_dlg->show();
 			return Fl::run();
 		}
-		else if (command == 0) {
+		else if (command == "0") {
 			break;
 		}
 	}
