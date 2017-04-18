@@ -41,7 +41,7 @@ void cancel_robot_order(Fl_Widget* w, void* p);
 class Robot_torso_Dialog {
 	public:
 		Robot_torso_Dialog() {
-			dialog = new Fl_Window(340, 340, "New Robot Arm");
+			dialog = new Fl_Window(340, 130, "New Robot Torso");
 				t_name = new Fl_Input(120, 10, 210, 25, "Name:");
 				t_name->align(FL_ALIGN_LEFT);
 				
@@ -51,7 +51,7 @@ class Robot_torso_Dialog {
 				t_max_arms = new Fl_Input(120, 70, 210, 25, "Max arms (1-3):");
 				t_max_arms->align(FL_ALIGN_LEFT);
 				
-				t_create = new Fl_Return_Button(145, 100, 120, 25, "Create Arm");
+				t_create = new Fl_Return_Button(145, 100, 120, 25, "Create Torso");
 				t_create->callback((Fl_Callback *)create_robot_torso, 0);
 				
 				t_cancel = new Fl_Button(270, 100, 60, 25, "Cancel");
@@ -84,7 +84,7 @@ void create_robot_torso(Fl_Widget* w, void* p) {
 	
 	robot_torso_dlg->hide();
 	
-	shop.create_new_robot_torso(name, stoi(battery_compartments), stoi(max_arms));
+	//shop.create_new_robot_torso(name, stoi(battery_compartments), stoi(max_arms));
 }
 
 void cancel_robot_torso(Fl_Widget* w, void* p) {
@@ -94,17 +94,17 @@ void cancel_robot_torso(Fl_Widget* w, void* p) {
 class Robot_head_Dialog {
 	public:
 		Robot_head_Dialog() {
-			dialog = new Fl_Window(340, 340, "New Robot Head");
+			dialog = new Fl_Window(340, 100, "New Robot Head");
 				h_name = new Fl_Input(120, 10, 210, 25, "Name:");
 				h_name->align(FL_ALIGN_LEFT);
 				
 				h_power = new Fl_Input(120, 40, 210, 25, "Power (25-100):");
 				h_power->align(FL_ALIGN_LEFT);
 				
-				h_create = new Fl_Return_Button(145, 100, 120, 25, "Create Head");
+				h_create = new Fl_Return_Button(145, 70, 120, 25, "Create Head");
 				h_create->callback((Fl_Callback *)create_robot_head, 0);
 				
-				h_cancel = new Fl_Button(270, 100, 60, 25, "Cancel");
+				h_cancel = new Fl_Button(270, 70, 60, 25, "Cancel");
 				h_cancel->callback((Fl_Callback *)cancel_robot_head, 0);
 				dialog->end();
 				dialog->set_non_modal();
@@ -130,7 +130,7 @@ void create_robot_head(Fl_Widget* w, void* p) {
 	string power = robot_head_dlg->power();
 	
 	robot_head_dlg->hide();
-	shop.create_new_robot_head(name, stod(power));
+	//shop.create_new_robot_head(name, stod(power));
 	
 }
 
@@ -142,17 +142,17 @@ void cancel_robot_head(Fl_Widget* w, void* p) {
 class Robot_arm_Dialog {
 	public:
 		Robot_arm_Dialog() {
-			dialog = new Fl_Window(340, 340, "New Robot Arm");
+			dialog = new Fl_Window(340, 100, "New Robot Arm");
 				a_name = new Fl_Input(120, 10, 210, 25, "Name:");
 				a_name->align(FL_ALIGN_LEFT);
 				
 				a_max_power = new Fl_Input(120, 40, 210, 25, "Max power (1-3):");
 				a_max_power->align(FL_ALIGN_LEFT);
 				
-				a_create = new Fl_Return_Button(145, 100, 120, 25, "Create Arm");
+				a_create = new Fl_Return_Button(145, 70, 120, 25, "Create Arm");
 				a_create->callback((Fl_Callback *)create_robot_arm, 0);
 				
-				a_cancel = new Fl_Button(270, 100, 60, 25, "Cancel");
+				a_cancel = new Fl_Button(270, 70, 60, 25, "Cancel");
 				a_cancel->callback((Fl_Callback *)cancel_robot_arm, 0);
 				dialog->end();
 				dialog->set_non_modal();
@@ -178,7 +178,7 @@ void create_robot_arm(Fl_Widget* w, void* p) {
 	string max_power = robot_arm_dlg->max_power();
 	
 	robot_arm_dlg->hide();
-	shop.create_new_robot_head(name, stod(max_power));
+	//shop.create_new_robot_head(name, stod(max_power));
 	
 }
 
@@ -189,17 +189,17 @@ void cancel_robot_arm(Fl_Widget* w, void* p) {
 class Robot_locomotor_Dialog {
 	public:
 		Robot_locomotor_Dialog() {
-			dialog = new Fl_Window(340, 340, "New Robot Head");
+			dialog = new Fl_Window(340, 100, "New Robot Locomotor");
 				l_name = new Fl_Input(120, 10, 210, 25, "Name:");
 				l_name->align(FL_ALIGN_LEFT);
 				
 				l_max_power = new Fl_Input(120, 40, 210, 25, "Max Power (25-100):");
 				l_max_power->align(FL_ALIGN_LEFT);
 				
-				l_create = new Fl_Return_Button(145, 100, 120, 25, "Create Head");
+				l_create = new Fl_Return_Button(145, 70, 120, 25, "Create Locomotor");
 				l_create->callback((Fl_Callback *)create_robot_locomotor, 0);
 				
-				l_cancel = new Fl_Button(270, 100, 60, 25, "Cancel");
+				l_cancel = new Fl_Button(270, 70, 60, 25, "Cancel");
 				l_cancel->callback((Fl_Callback *)cancel_robot_locomotor, 0);
 				dialog->end();
 				dialog->set_non_modal();
@@ -225,7 +225,7 @@ void create_robot_locomotor(Fl_Widget* w, void* p) {
 	string max_power = robot_locomotor_dlg->max_power();
 	
 	robot_locomotor_dlg->hide();
-	shop.create_new_robot_head(name, stod(max_power));
+	//shop.create_new_robot_head(name, stod(max_power));
 	
 }
 
@@ -236,17 +236,17 @@ void cancel_robot_locomotor(Fl_Widget* w, void* p) {
 class Robot_battery_Dialog {
 	public:
 		Robot_battery_Dialog() {
-			dialog = new Fl_Window(340, 340, "New Robot Head");
+			dialog = new Fl_Window(340, 100, "New Robot Battery");
 				b_name = new Fl_Input(120, 10, 210, 25, "Name:");
 				b_name->align(FL_ALIGN_LEFT);
 				
 				b_power_available = new Fl_Input(120, 40, 210, 25, "Power Available (25-100):");
 				b_power_available->align(FL_ALIGN_LEFT);
 				
-				b_create = new Fl_Return_Button(145, 100, 120, 25, "Create Head");
+				b_create = new Fl_Return_Button(145, 70, 120, 25, "Create Battery");
 				b_create->callback((Fl_Callback *)create_robot_battery, 0);
 				
-				b_cancel = new Fl_Button(270, 100, 60, 25, "Cancel");
+				b_cancel = new Fl_Button(270, 70, 60, 25, "Cancel");
 				b_cancel->callback((Fl_Callback *)cancel_robot_battery, 0);
 				dialog->end();
 				dialog->set_non_modal();
@@ -272,7 +272,7 @@ void create_robot_battery(Fl_Widget* w, void* p) {
 	string power_available = robot_battery_dlg->power_available();
 	
 	robot_battery_dlg->hide();
-	shop.create_new_robot_head(name, stod(power_available), stod(max_energy));
+	//shop.create_new_robot_head(name, stod(power_available), stod(max_energy));
 	
 }
 
@@ -350,15 +350,15 @@ int execute_robot_model_cmd() {
 		command = fl_input(msg.c_str());
 		
 		if (command == "1") {
-			shop.create_new_robot_model_1();
+			//shop.create_new_robot_model_1();
 			fl_message("Model 1 created successfully");
 		}
 		else if (command == "2") {
-			shop.create_new_robot_model_2();
+			//shop.create_new_robot_model_2();
 			fl_message("Model 2 created successfully");
 		}
 		else if (command == "3") {
-			shop.create_new_robot_model_3();
+			//shop.create_new_robot_model_3();
 			fl_message("Model 3 created successfully");
 		}
 		else if (command == "0") {
