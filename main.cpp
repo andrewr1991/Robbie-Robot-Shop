@@ -84,7 +84,7 @@ void create_robot_torso(Fl_Widget* w, void* p) {
 	
 	robot_torso_dlg->hide();
 	
-	//shop.create_new_robot_torso(name, stoi(battery_compartments), stoi(max_arms));
+	shop.create_new_robot_torso(name, stoi(battery_compartments), stoi(max_arms));
 }
 
 void cancel_robot_torso(Fl_Widget* w, void* p) {
@@ -130,7 +130,7 @@ void create_robot_head(Fl_Widget* w, void* p) {
 	string power = robot_head_dlg->power();
 	
 	robot_head_dlg->hide();
-	//shop.create_new_robot_head(name, stod(power));
+	shop.create_new_robot_head(name, stod(power));
 	
 }
 
@@ -178,7 +178,7 @@ void create_robot_arm(Fl_Widget* w, void* p) {
 	string max_power = robot_arm_dlg->max_power();
 	
 	robot_arm_dlg->hide();
-	//shop.create_new_robot_head(name, stod(max_power));
+	shop.create_new_robot_head(name, stod(max_power));
 	
 }
 
@@ -225,7 +225,7 @@ void create_robot_locomotor(Fl_Widget* w, void* p) {
 	string max_power = robot_locomotor_dlg->max_power();
 	
 	robot_locomotor_dlg->hide();
-	//shop.create_new_robot_head(name, stod(max_power));
+	shop.create_new_robot_head(name, stod(max_power));
 	
 }
 
@@ -272,7 +272,7 @@ void create_robot_battery(Fl_Widget* w, void* p) {
 	string power_available = robot_battery_dlg->power_available();
 	
 	robot_battery_dlg->hide();
-	//shop.create_new_robot_head(name, stod(power_available), stod(max_energy));
+	shop.create_new_robot_head(name, stod(power_available), stod(max_energy));
 	
 }
 
@@ -350,13 +350,19 @@ int execute_robot_model_cmd() {
 		command = fl_input(msg.c_str());
 		
 		if (command == "1") {
-			//shop.create_new_robot_model_1();
+			shop.create_new_robot_model_1();
+			fl_message("Model 1 created successfully");
 		}
 		else if (command == "2") {
-			//shop.create_new_robot_model_2();
+			shop.create_new_robot_model_2();
+			fl_message("Model 2 created successfully");
 		}
 		else if (command == "3") {
-			//shop.create_new_robot_model_3();
+			shop.create_new_robot_model_3();
+			fl_message("Model 3 created successfully");
+		}
+		else if (command == "0") {
+			break;
 		}
 	}
 }
@@ -392,19 +398,22 @@ int show_menu() {
 		else if (command == "2") {
 			execute_robot_model_cmd();
 		}
+		else if (command == "0") {
+			exit(1);
+		}
 	}
 }
 	
 int main() {
-show_menu();
+	show_menu();
 
-const int x = 360;
-const int y = 220;
+	const int x = 360;
+	const int y = 220;
 
-win = new Fl_Window{ x, y, "Library Management System" };
-win->color(FL_WHITE);
+	win = new Fl_Window{ x, y, "Library Management System" };
+	win->color(FL_WHITE);
 
-win->end();
-win->show();
-return(Fl::run());
+	win->end();
+	win->show();
+	return(Fl::run());
 }
