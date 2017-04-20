@@ -9,9 +9,9 @@ debug: main
 rebuild: clean main
 
 main: main.o head.o locomotor.o torso.o battery.o arm.o robot_part.o robot_model.o shop.o customer.o sales_associate.o order.o
-		$(CXX) $(CXXFLAGS) main.o head.o locomotor.o torso.o battery.o arm.o robot_part.o robot_model.o shop.o
+		$(CXX) $(CXXFLAGS) main.o head.o locomotor.o torso.o battery.o arm.o robot_part.o robot_model.o shop.o -std=c++11 -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/freetype2 -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -g -O2 -fvisibility-inlines-hidden -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT -o 'main' -Wl,-Bsymbolic-functions -lfltk -lX11
 main.o: main.cpp head.h locomotor.h torso.h battery.h arm.h robot_part.h robot_model.h shop.h customer.h
-		$(CXX) $(CXXFLAGS) -c main.cpp
+		$(CXX) $(CXXFLAGS) -c -std=c++11 -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/freetype2 -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -g -O2 -fvisibility-inlines-hidden -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT 'main.cpp' -Wl,-Bsymbolic-functions -lfltk -lX11
 head.o: head.cpp head.h robot_part.h
 		$(CXX) $(CXXFLAGS) -c head.cpp
 locomotor.o: locomotor.cpp locomotor.h robot_part.h
