@@ -51,10 +51,10 @@ class Robot_torso_Dialog {
 				t_name = new Fl_Input(120, 10, 210, 25, "Name:");
 				t_name->align(FL_ALIGN_LEFT);
 				
-				t_battery_compartments = new Fl_Input(120, 40, 210, 25, "Battery Compartments (1-3):");
+				t_battery_compartments = new Fl_Input(120, 40, 210, 25, "Batteries (1-3):");
 				t_battery_compartments->align(FL_ALIGN_LEFT);
 				
-				t_max_arms = new Fl_Input(120, 70, 210, 25, "Max arms (1-3):");
+				t_max_arms = new Fl_Input(120, 70, 210, 25, "Arms (1-3):");
 				t_max_arms->align(FL_ALIGN_LEFT);
 				
 				t_create = new Fl_Return_Button(145, 100, 120, 25, "Create Torso");
@@ -90,7 +90,7 @@ void create_robot_torso(Fl_Widget* w, void* p) {
 	
 	robot_torso_dlg->hide();
 	
-	//shop.create_new_robot_torso(name, stoi(battery_compartments), stoi(max_arms));
+	shop.create_new_robot_torso(name, stoi(battery_compartments), stoi(max_arms));
 }
 
 void cancel_robot_torso(Fl_Widget* w, void* p) {
@@ -136,7 +136,7 @@ void create_robot_head(Fl_Widget* w, void* p) {
 	string power = robot_head_dlg->power();
 	
 	robot_head_dlg->hide();
-	//shop.create_new_robot_head(name, stod(power));
+	shop.create_new_robot_head(name, stod(power));
 	
 }
 
@@ -152,7 +152,7 @@ class Robot_arm_Dialog {
 				a_name = new Fl_Input(120, 10, 210, 25, "Name:");
 				a_name->align(FL_ALIGN_LEFT);
 				
-				a_max_power = new Fl_Input(120, 40, 210, 25, "Max power (1-3):");
+				a_max_power = new Fl_Input(120, 40, 210, 25, "Power (1-3):");
 				a_max_power->align(FL_ALIGN_LEFT);
 				
 				a_create = new Fl_Return_Button(145, 70, 120, 25, "Create Arm");
@@ -184,7 +184,7 @@ void create_robot_arm(Fl_Widget* w, void* p) {
 	string max_power = robot_arm_dlg->max_power();
 	
 	robot_arm_dlg->hide();
-	//shop.create_new_robot_head(name, stod(max_power));
+	shop.create_new_robot_head(name, stod(max_power));
 	
 }
 
@@ -199,7 +199,7 @@ class Robot_locomotor_Dialog {
 				l_name = new Fl_Input(120, 10, 210, 25, "Name:");
 				l_name->align(FL_ALIGN_LEFT);
 				
-				l_max_power = new Fl_Input(120, 40, 210, 25, "Max Power (25-100):");
+				l_max_power = new Fl_Input(120, 40, 210, 25, "Power (25-100):");
 				l_max_power->align(FL_ALIGN_LEFT);
 				
 				l_create = new Fl_Return_Button(145, 70, 120, 25, "Create Locomotor");
@@ -231,7 +231,7 @@ void create_robot_locomotor(Fl_Widget* w, void* p) {
 	string max_power = robot_locomotor_dlg->max_power();
 	
 	robot_locomotor_dlg->hide();
-	//shop.create_new_robot_head(name, stod(max_power));
+	shop.create_new_robot_head(name, stod(max_power));
 	
 }
 
@@ -242,17 +242,20 @@ void cancel_robot_locomotor(Fl_Widget* w, void* p) {
 class Robot_battery_Dialog {
 	public:
 		Robot_battery_Dialog() {
-			dialog = new Fl_Window(340, 100, "New Robot Battery");
+			dialog = new Fl_Window(360, 130, "New Robot Battery");
 				b_name = new Fl_Input(120, 10, 210, 25, "Name:");
 				b_name->align(FL_ALIGN_LEFT);
 				
-				b_power_available = new Fl_Input(120, 40, 210, 25, "Power Available (25-100):");
+				b_power_available = new Fl_Input(120, 40, 210, 25, "Power (25-100):");
 				b_power_available->align(FL_ALIGN_LEFT);
 				
-				b_create = new Fl_Return_Button(145, 70, 120, 25, "Create Battery");
+				b_max_energy = new Fl_Input(120, 70, 210, 25, "Energy (25-100):");
+				b_max_energy->align(FL_ALIGN_LEFT);
+				
+				b_create = new Fl_Return_Button(145, 100, 120, 25, "Create Battery");
 				b_create->callback((Fl_Callback *)create_robot_battery, 0);
 				
-				b_cancel = new Fl_Button(270, 70, 60, 25, "Cancel");
+				b_cancel = new Fl_Button(270, 100, 60, 25, "Cancel");
 				b_cancel->callback((Fl_Callback *)cancel_robot_battery, 0);
 				dialog->end();
 				dialog->set_non_modal();
@@ -262,11 +265,13 @@ class Robot_battery_Dialog {
 		void hide() {dialog->hide();}
 		string name() {return b_name->value();}
 		string power_available() {return b_power_available->value();}
+		string max_energy() {return b_max_energy->value();}
 	
 	private:
 		Fl_Window *dialog;
 		Fl_Input *b_name;
 		Fl_Input *b_power_available;
+		Fl_Input *b_max_energy;
 		Fl_Return_Button *b_create;
 		Fl_Button *b_cancel;
 };
@@ -276,9 +281,10 @@ Robot_battery_Dialog *robot_battery_dlg;
 void create_robot_battery(Fl_Widget* w, void* p) {
 	string name = robot_battery_dlg->name();
 	string power_available = robot_battery_dlg->power_available();
+	string max_energy = robot_battery_dlg->max_energy();
 	
 	robot_battery_dlg->hide();
-	//shop.create_new_robot_head(name, stod(power_available), stod(max_energy));
+	shop.create_new_robot_battery(name, stod(power_available), stod(max_energy));
 	
 }
 
@@ -359,15 +365,16 @@ Fl_Menu_Item menuitems[] = {
 		{ "&Quit", FL_ALT + 'q', (Fl_Callback *)quitCB },
 		{ 0 },
 	{ "&Robot Parts", 0, 0, 0, FL_SUBMENU },
-		{ "&New Torso", FL_ALT + 'n', (Fl_Callback *)newTorsoCB },
-		{ "&New Head", FL_ALT + 'l', (Fl_Callback *)newHeadCB },
-		{ "&New Arm", FL_ALT + 'l', (Fl_Callback *)newArmCB },
+		{ "&New Torso", FL_ALT + 't', (Fl_Callback *)newTorsoCB },
+		{ "&New Head", FL_ALT + 'h', (Fl_Callback *)newHeadCB },
+		{ "&New Arm", FL_ALT + 'a', (Fl_Callback *)newArmCB },
 		{ "&New Locomotor", FL_ALT + 'l', (Fl_Callback *)newLocomotorCB },
-		{ "&New Battery", FL_ALT + 'l', (Fl_Callback *)newBatteryCB },
+		{ "&New Battery", FL_ALT + 'b', (Fl_Callback *)newBatteryCB },
 		{ 0 },
 	{ "&Robot Models", 0, 0, 0, FL_SUBMENU },
-		{ "&New Model 1", FL_ALT + 'n', (Fl_Callback *)newRobotModel1CB },/*
-		{ "&List All", FL_ALT + 'l', (Fl_Callback *)listAllPatronsCB },*/
+		{ "&New Model 1", FL_ALT + 'm', (Fl_Callback *)newRobotModel1CB },
+		{ "&New Model 2", FL_ALT + 'n', (Fl_Callback *)newRobotModel2CB },
+		{ "&New Model 3", FL_ALT + 'k', (Fl_Callback *)newRobotModel3CB },
 		{ 0 },
 	{ "&Help", 0, 0, 0, FL_SUBMENU },
 		{ "&Help", FL_ALT + 'h', (Fl_Callback *)helpCB },
