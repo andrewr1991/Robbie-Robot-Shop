@@ -1,8 +1,9 @@
 #include "shop.h"
 #include "robot_model.h"
 #include "robot_part.h"
-#include <iostream>
+#include <vector>
 #include <string>
+#include <iostream>
 #include <FL/Fl.H>
 #include <FL/fl_ask.H>
 #include <FL/Fl_Window.H>
@@ -11,11 +12,16 @@
 #include <FL/Fl_Multiline_Input.H>
 #include <FL/Fl_Return_Button.H>
 #include <FL/Fl_Button.H>
+#include <FL/Fl_Pack.H>
+#include <FL/Fl_Shared_Image.H>
+#include <FL/Fl_PNG_Image.H>
 #include <FL/Fl_Value_Input.H>
 #include <FL/Fl_Menu_Bar.H>
+#include <FL/Fl_Scroll.H>
 
 Shop shop;
 Fl_Window *win;
+Fl_Menu_Bar *menubar;
 
 using namespace std;
 
@@ -280,140 +286,76 @@ void cancel_robot_battery(Fl_Widget* w, void* p) {
 	robot_battery_dlg->hide();
 }
 
-/*************** Execute Robot Part Command Function ****************/
+//Menu bar callbacks
 
-int execute_robot_part_cmd() {
-	string msg;
-	string command;
-	
-	while (true) {
-		msg = "===============\n";
-		msg += "Robot Part Shop\n";
-		msg += "===============\n\n";
-		msg += "(1) Create new robot Torso\n";
-		msg += "(2) Create new robot Head\n";
-		msg += "(3) Create new robot Arm\n";
-		msg += "(4) Create new robot Locomotor\n";
-		msg += "(5) Create new robot Battery\n";
-		msg += "(9) Help\n";
-		msg += "(0) Back\n\n";
-		msg+= "Command?";
-		
-		command = fl_input(msg.c_str());
-		
-		if (command == "1") {
-			robot_torso_dlg = new Robot_torso_Dialog{};
-			robot_torso_dlg->show();
-			return Fl::run();
-		}
-		else if (command == "2") {
-			robot_head_dlg = new Robot_head_Dialog{};
-			robot_head_dlg->show();
-			return Fl::run();
-		}
-			else if (command == "3") {
-			robot_arm_dlg = new Robot_arm_Dialog{};
-			robot_arm_dlg->show();
-			return Fl::run();
-		}
-			else if (command == "4") {
-			robot_locomotor_dlg = new Robot_locomotor_Dialog{};
-			robot_locomotor_dlg->show();
-			return Fl::run();
-		}
-			else if (command == "5") {
-			robot_battery_dlg = new Robot_battery_Dialog{};
-			robot_battery_dlg->show();
-			return Fl::run();
-		}
-		else if (command == "0") {
-			break;
-		}
-	}
+int newTorsoCB(Fl_Widget* w, void* p) { 
+	robot_torso_dlg = new Robot_torso_Dialog{};
+	robot_torso_dlg->show();
+	return Fl::run();
 }
 
-int execute_robot_model_cmd() {
-	string msg;
-	string command;
-	
-	while (true) {
-		msg = "===============\n";
-		msg += "Robot Model Shop\n";
-		msg += "===============\n\n";
-		msg += "(1) Create new robot Model 1\n";
-		msg += "(2) Create new robot Model 2\n";
-		msg += "(3) Create new robot Model 3\n";
-		msg += "(9) Help\n";
-		msg += "(0) Back\n\n";
-		msg+= "Command?";
-		
-		command = fl_input(msg.c_str());
-		
-		if (command == "1") {
-			//shop.create_new_robot_model_1();
-			fl_message("Model 1 created successfully");
-		}
-		else if (command == "2") {
-			//shop.create_new_robot_model_2();
-			fl_message("Model 2 created successfully");
-		}
-		else if (command == "3") {
-			//shop.create_new_robot_model_3();
-			fl_message("Model 3 created successfully");
-		}
-		else if (command == "0") {
-			break;
-		}
-	}
+int newHeadCB(Fl_Widget* w, void* p) { 
+	robot_head_dlg = new Robot_head_Dialog{};
+	robot_head_dlg->show();
+	return Fl::run();
 }
 
-int show_menu() {
-	
-	string command;
-	string msg;
-	string robot_shop_cmd;
-	
-	while (true) {
-		msg = "=======================\n";
-		msg += "C1325 Robbie Robot Shop\n";
-		msg += "=======================\n\n";
-		msg += "(1) Create new robot part\n";
-		msg += "(2) Create new robot model\n";
-		msg += "(3) Create new customer\n";
-		msg += "(4) Create new sales associate\n";
-		msg += "(5) Create new order\n";
-		msg += "(9) Help\n";
-		msg += "(0) Exit\n\n";
-		msg+= "Command?";
+int newArmCB(Fl_Widget* w, void* p) { 
+	robot_arm_dlg = new Robot_arm_Dialog{};
+	robot_arm_dlg->show();
+	return Fl::run();
+}
 
-		Fl_Window *beacon = new Fl_Window(1, 1);
-		beacon->show();
-		beacon->hide();
+int newLocomotorCB(Fl_Widget* w, void* p) { 
+	robot_locomotor_dlg = new Robot_locomotor_Dialog{};
+	robot_locomotor_dlg->show();
+	return Fl::run();
+}
 
-		command = fl_input(msg.c_str());
-		
-		if (command == "1") {
-			execute_robot_part_cmd();
-		}
-		else if (command == "2") {
-			execute_robot_model_cmd();
-		}
-		else if (command == "0") {
-			exit(1);
-		}
-	}
+int newBatteryCB(Fl_Widget* w, void* p) { 
+	robot_battery_dlg = new Robot_battery_Dialog{};
+	robot_battery_dlg->show();
+	return Fl::run();
+}
+
+void quitCB(Fl_Widget* w, void* p) {
+	win->hide(); 
 }
 	
 int main() {
-	show_menu();
+	
+//Menu
+Fl_Menu_Item menuitems[] = {
+	{ "&File", 0, 0, 0, FL_SUBMENU },
+		{ "&Quit", FL_ALT + 'q', (Fl_Callback *)quitCB },
+		{ 0 },
+	{ "&Robot Part", 0, 0, 0, FL_SUBMENU },
+		{ "&New Torso", FL_ALT + 'n', (Fl_Callback *)newTorsoCB },
+		{ "&New Head", FL_ALT + 'l', (Fl_Callback *)newHeadCB },
+		{ "&New Arm", FL_ALT + 'l', (Fl_Callback *)newArmCB },
+		{ "&New Locomotor", FL_ALT + 'l', (Fl_Callback *)newLocomotorCB },
+		{ "&New Battery", FL_ALT + 'l', (Fl_Callback *)newBatteryCB },
+		{ 0 },/*
+	{ "&Patron", 0, 0, 0, FL_SUBMENU },
+		{ "&New", FL_ALT + 'n', (Fl_Callback *)addPatronCB },
+		{ "&List All", FL_ALT + 'l', (Fl_Callback *)listAllPatronsCB },
+		{ 0 },
+	{ "&Help", 0, 0, 0, FL_SUBMENU },
+		{ "&Help", FL_ALT + 'h', (Fl_Callback *)helpCB },
+		{ 0 },*/
+	{ 0 }
+};
 
-	const int x = 360;
-	const int y = 220;
+	const int x = 600;
+	const int y = 350;
 
 	win = new Fl_Window{ x, y, "Library Management System" };
 	win->color(FL_WHITE);
 
+	menubar = new Fl_Menu_Bar(0, 0, x, 30);
+	menubar->menu(menuitems);
 	win->end();
 	win->show();
+	
 	return(Fl::run());
 }
