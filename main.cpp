@@ -43,6 +43,8 @@ void create_robot_sales_associate(Fl_Widget* w, void* p);
 void cancel_robot_sales_associate(Fl_Widget* w, void* p);
 void create_robot_order(Fl_Widget* w, void* p);
 void cancel_robot_order(Fl_Widget* w, void* p);
+void create_customer(Fl_Widget* w, void* p);
+void cancel_customer(Fl_Widget* w, void* p);
 
 class Robot_torso_Dialog {
 	public:
@@ -202,7 +204,7 @@ class Robot_locomotor_Dialog {
 				l_max_power = new Fl_Input(120, 40, 210, 25, "Power (25-100):");
 				l_max_power->align(FL_ALIGN_LEFT);
 				
-				l_create = new Fl_Return_Button(145, 70, 120, 25, "Create Locomotor");
+				l_create = new Fl_Return_Button(100, 70, 165, 25, "Create Locomotor");
 				l_create->callback((Fl_Callback *)create_robot_locomotor, 0);
 				
 				l_cancel = new Fl_Button(270, 70, 60, 25, "Cancel");
@@ -252,7 +254,7 @@ class Robot_battery_Dialog {
 				b_max_energy = new Fl_Input(120, 70, 210, 25, "Energy (25-100):");
 				b_max_energy->align(FL_ALIGN_LEFT);
 				
-				b_create = new Fl_Return_Button(145, 100, 120, 25, "Create Battery");
+				b_create = new Fl_Return_Button(125, 100, 140, 25, "Create Battery");
 				b_create->callback((Fl_Callback *)create_robot_battery, 0);
 				
 				b_cancel = new Fl_Button(270, 100, 60, 25, "Cancel");
@@ -292,6 +294,64 @@ void cancel_robot_battery(Fl_Widget* w, void* p) {
 	robot_battery_dlg->hide();
 }
 
+class Customer_Dialog {
+	public:
+		Customer_Dialog() {
+			dialog = new Fl_Window(360, 160, "New Customer");
+				c_name = new Fl_Input(120, 10, 210, 25, "Name:");
+				c_name->align(FL_ALIGN_LEFT);
+				
+				c_number = new Fl_Input(120, 40, 210, 25, "Customer #");
+				c_number->align(FL_ALIGN_LEFT);
+				
+				c_phone_number = new Fl_Input(120, 70, 210, 25, "Phone #:");
+				c_phone_number->align(FL_ALIGN_LEFT);
+				
+				c_email_address = new Fl_Input(120, 100, 210, 25, "Email :");
+				c_email_address->align(FL_ALIGN_LEFT);
+				
+				c_create = new Fl_Return_Button(115, 130, 150, 25, "Create Customer");
+				c_create->callback((Fl_Callback *)create_customer, 0);
+				
+				c_cancel = new Fl_Button(270, 130, 60, 25, "Cancel");
+				c_cancel->callback((Fl_Callback *)cancel_customer, 0);
+				dialog->end();
+				dialog->set_non_modal();
+		}
+	
+		void show() {dialog->show();}
+		void hide() {dialog->hide();}
+		string name() {return c_name->value();}
+		string number() {return c_number->value();}
+		string phone_number() {return c_phone_number->value();}
+		string email_address() {return c_email_address->value();}
+	
+	private:
+		Fl_Window *dialog;
+		Fl_Input *c_name;
+		Fl_Input *c_number;
+		Fl_Input *c_phone_number;
+		Fl_Input *c_email_address;
+		Fl_Return_Button *c_create;
+		Fl_Button *c_cancel;
+};
+
+Customer_Dialog *customer_dlg;
+
+void create_customer(Fl_Widget* w, void* p) {
+	string name = customer_dlg->name();
+	string number = customer_dlg->number();
+	string phone_number = customer_dlg->phone_number();
+	string email_address = customer_dlg->email_address();
+	
+	customer_dlg->hide();
+	shop.create_new_customer(name, stoi(number), phone_number, email_address);
+}
+
+void cancel_customer(Fl_Widget* w, void* p) {
+	customer_dlg->hide();
+}
+
 //Menu bar callbacks
 
 int newTorsoCB(Fl_Widget* w, void* p) { 
@@ -324,22 +384,28 @@ int newBatteryCB(Fl_Widget* w, void* p) {
 	return Fl::run();
 }
 
-int newRobotModel1CB(Fl_Widget* w, void* p) {
+void newRobotModel1CB(Fl_Widget* w, void* p) {
 	shop.create_new_robot_model_1();
 	fl_message_title("New model 1");
 	fl_message("New robot model 1 created successfully");
 }
 
-int newRobotModel2CB(Fl_Widget* w, void* p) {
+void newRobotModel2CB(Fl_Widget* w, void* p) {
 	shop.create_new_robot_model_2();
 	fl_message_title("New model 2");
 	fl_message("New robot model 2 created successfully");
 }
 
-int newRobotModel3CB(Fl_Widget* w, void* p) {
+void newRobotModel3CB(Fl_Widget* w, void* p) {
 	shop.create_new_robot_model_3();
 	fl_message_title("New model 3");
 	fl_message("New robot model 3 created successfully");
+}
+
+int newCustomerCB(Fl_Widget* w, void* p) { 
+	customer_dlg = new Customer_Dialog{};
+	customer_dlg->show();
+	return Fl::run();
 }
 
 void helpCB(Fl_Widget* w, void* p) {
@@ -375,6 +441,9 @@ Fl_Menu_Item menuitems[] = {
 		{ "&New Model 1", FL_ALT + 'm', (Fl_Callback *)newRobotModel1CB },
 		{ "&New Model 2", FL_ALT + 'n', (Fl_Callback *)newRobotModel2CB },
 		{ "&New Model 3", FL_ALT + 'k', (Fl_Callback *)newRobotModel3CB },
+		{ 0 },
+	{ "&Customers", 0, 0, 0, FL_SUBMENU },
+		{ "&New Customer", FL_ALT + 'c', (Fl_Callback *)newCustomerCB },
 		{ 0 },
 	{ "&Help", 0, 0, 0, FL_SUBMENU },
 		{ "&Help", FL_ALT + 'h', (Fl_Callback *)helpCB },

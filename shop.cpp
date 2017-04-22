@@ -344,32 +344,17 @@ void Shop::create_new_robot_battery(string name, double power_available, double 
 	battery_output_file.close();
 }
 
-void Shop::create_new_customer() {
-	string name;
-	int customer_number;
-	string phone_number;
-	string email_address;
+void Shop::create_new_customer(string name, int number, string phone_number, string email_address) {
 
 	string file_data;
 
-	getchar();
-	cout << "Enter the name of the customer: ";
-	getline(cin, name);
-	cout << "Enter the customer number: ";
-	cin >> customer_number;
-	getchar();
-	cout << "Enter the customer phone number: ";
-	getline(cin, phone_number);
-	cout << "Enter the customer email address: ";
-	getline(cin, email_address);
-
-	file_data = name + "," + to_string(customer_number) + "," + phone_number + "," + email_address + "\n";
+	file_data = name + "," + to_string(number) + "," + phone_number + "," + email_address + "\n";
 
 	customer_output_file.open("customers.txt", fstream::app);
 	customer_output_file << file_data;
 	customer_output_file.close();
 
-	Customer customer(name, customer_number, phone_number, email_address);
+	Customer customer(name, number, phone_number, email_address);
 	customers.push_back(customer);
 	cout << "Customer created successfully\n\n";
 }
@@ -436,7 +421,6 @@ void Shop::create_new_order() {
 	
 	Order order(order_number, date, customer, sales_associate, robot_models[0], cost, status);
 	orders.push_back(order);
-	cout << "New order created!\n\n"; 
 }
 
 void Shop::loadData() {

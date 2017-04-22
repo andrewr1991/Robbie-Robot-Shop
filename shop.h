@@ -61,7 +61,7 @@ class Shop {
     void create_new_robot_model_3();
 
     //Customers
-    void create_new_customer();
+    void create_new_customer(string name, int number, string phone_number, string email_address);
 
     //Sales associates
     void create_new_sales_associate();
