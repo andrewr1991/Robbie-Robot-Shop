@@ -318,6 +318,35 @@ int newBatteryCB(Fl_Widget* w, void* p) {
 	return Fl::run();
 }
 
+int newRobotModel1CB(Fl_Widget* w, void* p) {
+	shop.create_new_robot_model_1();
+	fl_message_title("New model 1");
+	fl_message("New robot model 1 created successfully");
+}
+
+int newRobotModel2CB(Fl_Widget* w, void* p) {
+	shop.create_new_robot_model_2();
+	fl_message_title("New model 2");
+	fl_message("New robot model 2 created successfully");
+}
+
+int newRobotModel3CB(Fl_Widget* w, void* p) {
+	shop.create_new_robot_model_3();
+	fl_message_title("New model 3");
+	fl_message("New robot model 3 created successfully");
+}
+
+void helpCB(Fl_Widget* w, void* p) {
+	string msg;
+  	msg = "Welcome to the Robbie Robot Shop\n";
+  	msg += "You can create a single robot part or choose from a catalog of pre-assembled robots\n";
+  	msg += "You can also create a new sales order and add yourself as a customer\n";
+  	msg += "Select which option you would like from the dropdown menus";
+  	
+  	fl_message_title("Help");
+  	fl_message(msg.c_str());
+}
+
 void quitCB(Fl_Widget* w, void* p) {
 	win->hide(); 
 }
@@ -329,20 +358,20 @@ Fl_Menu_Item menuitems[] = {
 	{ "&File", 0, 0, 0, FL_SUBMENU },
 		{ "&Quit", FL_ALT + 'q', (Fl_Callback *)quitCB },
 		{ 0 },
-	{ "&Robot Part", 0, 0, 0, FL_SUBMENU },
+	{ "&Robot Parts", 0, 0, 0, FL_SUBMENU },
 		{ "&New Torso", FL_ALT + 'n', (Fl_Callback *)newTorsoCB },
 		{ "&New Head", FL_ALT + 'l', (Fl_Callback *)newHeadCB },
 		{ "&New Arm", FL_ALT + 'l', (Fl_Callback *)newArmCB },
 		{ "&New Locomotor", FL_ALT + 'l', (Fl_Callback *)newLocomotorCB },
 		{ "&New Battery", FL_ALT + 'l', (Fl_Callback *)newBatteryCB },
-		{ 0 },/*
-	{ "&Patron", 0, 0, 0, FL_SUBMENU },
-		{ "&New", FL_ALT + 'n', (Fl_Callback *)addPatronCB },
-		{ "&List All", FL_ALT + 'l', (Fl_Callback *)listAllPatronsCB },
+		{ 0 },
+	{ "&Robot Models", 0, 0, 0, FL_SUBMENU },
+		{ "&New Model 1", FL_ALT + 'n', (Fl_Callback *)newRobotModel1CB },/*
+		{ "&List All", FL_ALT + 'l', (Fl_Callback *)listAllPatronsCB },*/
 		{ 0 },
 	{ "&Help", 0, 0, 0, FL_SUBMENU },
 		{ "&Help", FL_ALT + 'h', (Fl_Callback *)helpCB },
-		{ 0 },*/
+		{ 0 },
 	{ 0 }
 };
 
