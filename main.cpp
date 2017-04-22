@@ -384,22 +384,34 @@ int newBatteryCB(Fl_Widget* w, void* p) {
 	return Fl::run();
 }
 
+void modelCatalogCB(Fl_Widget* w, void* p) {
+	string catalog;
+
+	catalog += "Model 9000\nCost: $16,000\nMax speed: 100\nMax battery life: 100\nThe 9000 model is our top robot with all of the best robot parts\n";
+	catalog += "-----------------------\n";
+	catalog += "Model 5000\nCost: $8,000\nMax speed: 50\nMax battery life: 50\nThe 5000 model is our mid-range robot which includes all of our most popular robot parts\n";
+	catalog += "-----------------------\n";
+	catalog += "Model 2500\nCost: $4,250\nMax speed: 25\nMax battery life: 25\nThe 2500 model is our low-end robot which includes the lowest specs. available but is great for beginners\n";
+	fl_message_title("Robot Model Catalog");
+	fl_message(catalog.c_str());
+}
+
 void newRobotModel1CB(Fl_Widget* w, void* p) {
 	shop.create_new_robot_model_1();
-	fl_message_title("New model 1");
-	fl_message("New robot model 1 created successfully");
+	fl_message_title("New model 9000");
+	fl_message("New robot model 9000 created successfully");
 }
 
 void newRobotModel2CB(Fl_Widget* w, void* p) {
 	shop.create_new_robot_model_2();
-	fl_message_title("New model 2");
-	fl_message("New robot model 2 created successfully");
+	fl_message_title("New model 5000");
+	fl_message("New robot model 5000 created successfully");
 }
 
 void newRobotModel3CB(Fl_Widget* w, void* p) {
 	shop.create_new_robot_model_3();
-	fl_message_title("New model 3");
-	fl_message("New robot model 3 created successfully");
+	fl_message_title("New model 2500");
+	fl_message("New robot model 2500 created successfully");
 }
 
 int newCustomerCB(Fl_Widget* w, void* p) { 
@@ -428,25 +440,26 @@ int main() {
 //Menu
 Fl_Menu_Item menuitems[] = {
 	{ "&File", 0, 0, 0, FL_SUBMENU },
-		{ "&Quit", FL_ALT + 'q', (Fl_Callback *)quitCB },
+		{ "&Quit  ", FL_ALT + 'q', (Fl_Callback *)quitCB },
 		{ 0 },
-	{ "&Robot Parts", 0, 0, 0, FL_SUBMENU },
-		{ "&New Torso", FL_ALT + 't', (Fl_Callback *)newTorsoCB },
-		{ "&New Head", FL_ALT + 'h', (Fl_Callback *)newHeadCB },
-		{ "&New Arm", FL_ALT + 'a', (Fl_Callback *)newArmCB },
-		{ "&New Locomotor", FL_ALT + 'l', (Fl_Callback *)newLocomotorCB },
-		{ "&New Battery", FL_ALT + 'b', (Fl_Callback *)newBatteryCB },
+	{ "&Robot Parts  ", 0, 0, 0, FL_SUBMENU },
+		{ "&New Torso  ", FL_ALT + 't', (Fl_Callback *)newTorsoCB },
+		{ "&New Head  ", FL_ALT + 'h', (Fl_Callback *)newHeadCB },
+		{ "&New Arm  ", FL_ALT + 'a', (Fl_Callback *)newArmCB },
+		{ "&New Locomotor  ", FL_ALT + 'l', (Fl_Callback *)newLocomotorCB },
+		{ "&New Battery  ", FL_ALT + 'b', (Fl_Callback *)newBatteryCB },
 		{ 0 },
 	{ "&Robot Models", 0, 0, 0, FL_SUBMENU },
-		{ "&New Model 1", FL_ALT + 'm', (Fl_Callback *)newRobotModel1CB },
-		{ "&New Model 2", FL_ALT + 'n', (Fl_Callback *)newRobotModel2CB },
-		{ "&New Model 3", FL_ALT + 'k', (Fl_Callback *)newRobotModel3CB },
+		{ "&Robot Model Catalog  ", FL_ALT + 'o', (Fl_Callback *)modelCatalogCB },
+		{ "&New Model 9000  ", FL_ALT + 'm', (Fl_Callback *)newRobotModel1CB },
+		{ "&New Model 5000  ", FL_ALT + 'n', (Fl_Callback *)newRobotModel2CB },
+		{ "&New Model 2500  ", FL_ALT + 'k', (Fl_Callback *)newRobotModel3CB },
 		{ 0 },
 	{ "&Customers", 0, 0, 0, FL_SUBMENU },
-		{ "&New Customer", FL_ALT + 'c', (Fl_Callback *)newCustomerCB },
+		{ "&New Customer  ", FL_ALT + 'c', (Fl_Callback *)newCustomerCB },
 		{ 0 },
 	{ "&Help", 0, 0, 0, FL_SUBMENU },
-		{ "&Help", FL_ALT + 'h', (Fl_Callback *)helpCB },
+		{ "&Help  ", FL_ALT + 'h', (Fl_Callback *)helpCB },
 		{ 0 },
 	{ 0 }
 };

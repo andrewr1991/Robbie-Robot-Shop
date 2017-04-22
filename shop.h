@@ -57,8 +57,11 @@ class Shop {
 
     //Robot models
     void create_new_robot_model_1();
+    string model_1_to_string();
     void create_new_robot_model_2();
+    string model_2_to_string();
     void create_new_robot_model_3();
+    string model_3_to_string();
 
     //Customers
     void create_new_customer(string name, int number, string phone_number, string email_address);
