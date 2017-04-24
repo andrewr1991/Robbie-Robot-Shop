@@ -91,8 +91,8 @@ void create_robot_torso(Fl_Widget* w, void* p) {
 	string max_arms = robot_torso_dlg->max_arms();
 	
 	robot_torso_dlg->hide();
-	
 	shop.create_new_robot_torso(name, stoi(battery_compartments), stoi(max_arms));
+	fl_message("New Torso created successfully");
 }
 
 void cancel_robot_torso(Fl_Widget* w, void* p) {
@@ -139,7 +139,7 @@ void create_robot_head(Fl_Widget* w, void* p) {
 	
 	robot_head_dlg->hide();
 	shop.create_new_robot_head(name, stod(power));
-	
+	fl_message("New Head created successfully");
 }
 
 void cancel_robot_head(Fl_Widget* w, void* p) {
@@ -187,7 +187,7 @@ void create_robot_arm(Fl_Widget* w, void* p) {
 	
 	robot_arm_dlg->hide();
 	shop.create_new_robot_head(name, stod(max_power));
-	
+	fl_message("New Arm created successfully");
 }
 
 void cancel_robot_arm(Fl_Widget* w, void* p) {
@@ -234,7 +234,7 @@ void create_robot_locomotor(Fl_Widget* w, void* p) {
 	
 	robot_locomotor_dlg->hide();
 	shop.create_new_robot_head(name, stod(max_power));
-	
+	fl_message("New Locomotor created successfully");
 }
 
 void cancel_robot_locomotor(Fl_Widget* w, void* p) {
@@ -287,7 +287,7 @@ void create_robot_battery(Fl_Widget* w, void* p) {
 	
 	robot_battery_dlg->hide();
 	shop.create_new_robot_battery(name, stod(power_available), stod(max_energy));
-	
+	fl_message("New Battery created successfully");
 }
 
 void cancel_robot_battery(Fl_Widget* w, void* p) {
@@ -346,6 +346,7 @@ void create_customer(Fl_Widget* w, void* p) {
 	
 	customer_dlg->hide();
 	shop.create_new_customer(name, stoi(number), phone_number, email_address);
+	fl_message("Customer created successfully");
 }
 
 void cancel_customer(Fl_Widget* w, void* p) {

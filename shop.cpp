@@ -356,7 +356,6 @@ void Shop::create_new_customer(string name, int number, string phone_number, str
 
 	Customer customer(name, number, phone_number, email_address);
 	customers.push_back(customer);
-	cout << "Customer created successfully\n\n";
 }
 
 void Shop::create_new_sales_associate() {
