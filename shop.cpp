@@ -358,48 +358,29 @@ void Shop::create_new_customer(string name, int number, string phone_number, str
 	customers.push_back(customer);
 }
 
-void Shop::create_new_sales_associate() {
-	string name;
-	int employee_number;
-
+void Shop::create_new_sales_associate(string name, int sales_associate_number) {
 	string file_data;
 
-	getchar();
-	cout << "Enter the name of the sales associate: ";
-	getline(cin, name);
-	cout << "Enter the employee number: ";
-	cin >> employee_number;
-
-	file_data = name + "," + to_string(employee_number) + "\n";
+	file_data = name + "," + to_string(sales_associate_number) + "\n";
 
 	sales_associate_output_file.open("sales_associates.txt", fstream::app);
 	sales_associate_output_file << file_data;
 	sales_associate_output_file.close();
 
-	Sales_associate sales_associate(name, employee_number);
+	Sales_associate sales_associate(name, sales_associate_number);
 	sales_associates.push_back(sales_associate);
 	cout << "Sales associate created successfully\n\n";
 }
 
-void Shop::create_new_order() {
+void Shop::create_new_order(string name, string phone_number, string email_address, ) {
 	int robot_model_selection;
 	string customer_name;
 	int customer_number = 1;
 	string customer_phone_number;
 	string customer_email_address;
 	int order_number = 10;
-	string date = "4102017";
-	double cost = 5000;
-	int status = 1;
-	
-	getchar();
-	cout << "Enter your name: ";
-	getline(cin, customer_name);
-	cout << "Enter your phone number: ";
-	getline(cin, customer_phone_number);
-	cout << "Enter your email address: ";
-	getline(cin, customer_email_address);
-	cout << "New customer created!" << endl;
+	string date = "05022017";
+
 	
 	Customer customer (customer_name, customer_number, customer_phone_number, customer_email_address);
 	customers.push_back(customer);
@@ -418,7 +399,7 @@ void Shop::create_new_order() {
 	
 	Sales_associate sales_associate("John", 19);
 	
-	Order order(order_number, date, customer, sales_associate, robot_models[0], cost, status);
+	Order order(order_number, date, customer, sales_associate, robot_models[0]);
 	orders.push_back(order);
 }
 

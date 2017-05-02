@@ -67,7 +67,7 @@ class Shop {
     void create_new_customer(string name, int number, string phone_number, string email_address);
 
     //Sales associates
-    void create_new_sales_associate();
+    void create_new_sales_associate(string name, int sales_associate_number);
 
     //Orders
     void create_new_order();
