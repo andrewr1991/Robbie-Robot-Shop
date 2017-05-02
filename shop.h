@@ -24,6 +24,7 @@ class Shop {
     vector <Customer> customers;
     vector <Sales_associate> sales_associates;
     vector <Order> orders;
+    vector <string> orders_to_string;
 
   public:
     //File pointers
@@ -70,7 +71,8 @@ class Shop {
     void create_new_sales_associate(string name, int sales_associate_number);
 
     //Orders
-    void create_new_order(string name, int number, string phone_number, string email_address, int model);
+    void create_new_order(string name, int number, string phone_number, string email_address, int model, string to_string_order);
+    string order_string();
 	
 	//Loading data
     void loadData();

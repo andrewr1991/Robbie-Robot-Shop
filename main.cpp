@@ -456,8 +456,11 @@ void create_order(Fl_Widget* w, void* p) {
 	string email = order_dlg->email();
 	string model = order_dlg->model();
 	
+	string order_string = "\nName: " + name + "\nCustomer number: " + number + "\nCustomer Phone Number: " + phone + "\nCustomer Email: " + email + "\n" + "Model number: " + model + "\n";
+	
+	
 	order_dlg->hide();
-	shop.create_new_order(name, stoi(number), phone, email, stoi(model));
+	shop.create_new_order(name, stoi(number), phone, email, stoi(model), order_string);
 	fl_message("Order created successfully");
 }
 
@@ -545,6 +548,11 @@ int newOrderCB(Fl_Widget* w, void* p) {
 	return Fl::run();
 }
 
+int viewOrdersCB(Fl_Widget* w, void* p) {
+	fl_message_title("Orders");
+	fl_message(shop.order_string().c_str());
+}
+
 void helpCB(Fl_Widget* w, void* p) {
 	string msg;
   	msg = "Welcome to the Robbie Robot Shop\n";
@@ -588,6 +596,7 @@ Fl_Menu_Item menuitems[] = {
 		{ 0 },
 	{ "&Orders", 0, 0, 0, FL_SUBMENU },
 		{ "&New Order  ", FL_ALT + 'w', (Fl_Callback *)newOrderCB },
+		{ "&View All Orders  ", FL_ALT + 'w', (Fl_Callback *)viewOrdersCB },
 		{ 0 },	
 	{ "&Help", 0, 0, 0, FL_SUBMENU },
 		{ "&Help  ", FL_ALT + 'h', (Fl_Callback *)helpCB },
@@ -598,7 +607,7 @@ Fl_Menu_Item menuitems[] = {
 	const int x = 600;
 	const int y = 350;
 
-	win = new Fl_Window{ x, y, "Library Management System" };
+	win = new Fl_Window{ x, y, "Robbie Robot Shop" };
 	win->color(FL_WHITE);
 
 	menubar = new Fl_Menu_Bar(0, 0, x, 30);

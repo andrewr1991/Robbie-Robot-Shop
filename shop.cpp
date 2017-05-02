@@ -372,7 +372,7 @@ void Shop::create_new_sales_associate(string name, int sales_associate_number) {
 	cout << "Sales associate created successfully\n\n";
 }
 
-void Shop::create_new_order(string name, int number, string phone_number, string email_address, int model) {
+void Shop::create_new_order(string name, int number, string phone_number, string email_address, int model, string to_string_order) {
 
 	int order_number = 10;
 	string date = "05022017";
@@ -394,6 +394,19 @@ void Shop::create_new_order(string name, int number, string phone_number, string
 	
 	Order order(order_number, date, customer, sales_associate, robot_models.back());
 	orders.push_back(order);
+	
+	orders_to_string.push_back(to_string_order);
+}
+
+string Shop::order_string() {
+	string total_orders;
+	for (int i = 0; i < orders_to_string.size(); i++) {
+		total_orders += "-------------";
+		total_orders += orders_to_string[i];
+	}
+	if (orders_to_string.size() == 0) return "No orders available";
+	else total_orders += "-------------";
+	return total_orders;
 }
 
 void Shop::loadData() {

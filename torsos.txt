@@ -1,1 +1,2 @@
 torso1,1,5000.000000,The torso is the main component of a robot,torso.png,3,2
+w,1,5000.000000,The torso is the main component of a robot,torso.png,2,1
