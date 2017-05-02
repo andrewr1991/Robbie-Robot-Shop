@@ -372,34 +372,27 @@ void Shop::create_new_sales_associate(string name, int sales_associate_number) {
 	cout << "Sales associate created successfully\n\n";
 }
 
-void Shop::create_new_order(string name, string phone_number, string email_address, ) {
-	int robot_model_selection;
-	string customer_name;
-	int customer_number = 1;
-	string customer_phone_number;
-	string customer_email_address;
+void Shop::create_new_order(string name, int number, string phone_number, string email_address, int model) {
+
 	int order_number = 10;
 	string date = "05022017";
 
-	
-	Customer customer (customer_name, customer_number, customer_phone_number, customer_email_address);
+	Customer customer (name, number, phone_number, email_address);
 	customers.push_back(customer);
-	
-	cout << "Which robot model would you like: ";
-	cin >> robot_model_selection;
-	if (robot_model_selection == 1) {
+
+	if (model == 1) {
 		create_new_robot_model_1();
 	}
-	else if (robot_model_selection == 2) {
+	else if (model == 2) {
 		create_new_robot_model_2();
 	}
-	else if (robot_model_selection == 3) {
+	else if (model == 3) {
 		create_new_robot_model_3();
 	}
 	
 	Sales_associate sales_associate("John", 19);
 	
-	Order order(order_number, date, customer, sales_associate, robot_models[0]);
+	Order order(order_number, date, customer, sales_associate, robot_models.back());
 	orders.push_back(order);
 }
 

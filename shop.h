@@ -70,7 +70,7 @@ class Shop {
     void create_new_sales_associate(string name, int sales_associate_number);
 
     //Orders
-    void create_new_order();
+    void create_new_order(string name, int number, string phone_number, string email_address, int model);
 	
 	//Loading data
     void loadData();

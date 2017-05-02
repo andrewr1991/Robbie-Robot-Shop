@@ -1,6 +1,4 @@
 #include "shop.h"
-#include "robot_model.h"
-#include "robot_part.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -405,23 +403,26 @@ void cancel_sales_associate(Fl_Widget* w, void* p) {
 class Order_Dialog {
 	public:
 		Order_Dialog() {
-			dialog = new Fl_Window(360, 160, "New Order");
+			dialog = new Fl_Window(360, 190, "New Order");
 				o_name = new Fl_Input(120, 10, 210, 25, "Name:");
 				o_name->align(FL_ALIGN_LEFT);
 				
-				o_phone = new Fl_Input(120, 40, 210, 25, "Phone #:");
+				o_number = new Fl_Input(120, 40, 210, 25, "Customer #:");
+				o_number->align(FL_ALIGN_LEFT);
+				
+				o_phone = new Fl_Input(120, 70, 210, 25, "Phone #:");
 				o_phone->align(FL_ALIGN_LEFT);
 				
-				o_email = new Fl_Input(120, 70, 210, 25, "Email:");
+				o_email = new Fl_Input(120, 100, 210, 25, "Email:");
 				o_email->align(FL_ALIGN_LEFT);
 				
-				o_model = new Fl_Input(120, 100, 210, 25, "Robot Model (1-3):");
+				o_model = new Fl_Input(120, 130, 210, 25, "Model (1-3):");
 				o_model->align(FL_ALIGN_LEFT);
 				
-				o_create = new Fl_Return_Button(115, 130, 150, 25, "Create Customer");
+				o_create = new Fl_Return_Button(120, 160, 150, 25, "Create Order");
 				o_create->callback((Fl_Callback *)create_order, 0);
 				
-				o_cancel = new Fl_Button(270, 130, 60, 25, "Cancel");
+				o_cancel = new Fl_Button(275, 160, 60, 25, "Cancel");
 				o_cancel->callback((Fl_Callback *)cancel_order, 0);
 				dialog->end();
 				dialog->set_non_modal();
@@ -430,6 +431,7 @@ class Order_Dialog {
 		void show() {dialog->show();}
 		void hide() {dialog->hide();}
 		string name() {return o_name->value();}
+		string number() {return o_number->value();}
 		string phone() {return o_phone->value();}
 		string email() {return o_email->value();}
 		string model() {return o_model->value();}
@@ -437,6 +439,7 @@ class Order_Dialog {
 	private:
 		Fl_Window *dialog;
 		Fl_Input *o_name;
+		Fl_Input *o_number;
 		Fl_Input *o_phone;
 		Fl_Input *o_email;
 		Fl_Input *o_model;
@@ -445,6 +448,22 @@ class Order_Dialog {
 };
 
 Order_Dialog *order_dlg;
+
+void create_order(Fl_Widget* w, void* p) {
+	string name = order_dlg->name();
+	string number = order_dlg->number();
+	string phone = order_dlg->phone();
+	string email = order_dlg->email();
+	string model = order_dlg->model();
+	
+	order_dlg->hide();
+	shop.create_new_order(name, stoi(number), phone, email, stoi(model));
+	fl_message("Order created successfully");
+}
+
+void cancel_order(Fl_Widget* w, void* p) {
+	order_dlg->hide();
+}
 
 //Menu bar callbacks
 
@@ -520,6 +539,12 @@ int newSalesAssociateCB(Fl_Widget* w, void* p) {
 	return Fl::run();
 }
 
+int newOrderCB(Fl_Widget* w, void* p) {
+	order_dlg = new Order_Dialog{};
+	order_dlg->show();
+	return Fl::run();
+}
+
 void helpCB(Fl_Widget* w, void* p) {
 	string msg;
   	msg = "Welcome to the Robbie Robot Shop\n";
@@ -559,8 +584,11 @@ Fl_Menu_Item menuitems[] = {
 		{ "&New Customer  ", FL_ALT + 'c', (Fl_Callback *)newCustomerCB },
 		{ 0 },
 	{ "&Sales Associate", 0, 0, 0, FL_SUBMENU },
-		{ "&New Sales Associate  ", FL_ALT + 'c', (Fl_Callback *)newSalesAssociateCB },
+		{ "&New Sales Associate  ", FL_ALT + 's', (Fl_Callback *)newSalesAssociateCB },
 		{ 0 },
+	{ "&Orders", 0, 0, 0, FL_SUBMENU },
+		{ "&New Order  ", FL_ALT + 'w', (Fl_Callback *)newOrderCB },
+		{ 0 },	
 	{ "&Help", 0, 0, 0, FL_SUBMENU },
 		{ "&Help  ", FL_ALT + 'h', (Fl_Callback *)helpCB },
 		{ 0 },

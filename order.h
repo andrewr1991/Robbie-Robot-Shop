@@ -20,7 +20,7 @@ class Order {
 		
 	public:
 		Order(int _order_number, string _date, Customer _customer, Sales_associate _sales_associate,
-		Robot_model _robot_model, int _status, double _cost) : order_number{_order_number}, date{_date}, customer{_customer},
+		Robot_model _robot_model) : order_number{_order_number}, date{_date}, customer{_customer},
 		sales_associate{_sales_associate}, robot_model{_robot_model} {}
 };
 #endif
