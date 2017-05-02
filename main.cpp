@@ -37,10 +37,8 @@ void create_robot_battery(Fl_Widget* w, void* p);
 void cancel_robot_battery(Fl_Widget* w, void* p);
 void create_robot_model(Fl_Widget* w, void* p);
 void cancel_robot_model(Fl_Widget* w, void* p);
-void create_robot_customer(Fl_Widget* w, void* p);
-void cancel_robot_customer(Fl_Widget* w, void* p);
-void create_robot_sales_associate(Fl_Widget* w, void* p);
-void cancel_robot_sales_associate(Fl_Widget* w, void* p);
+void create_sales_associate(Fl_Widget* w, void* p);
+void cancel_sales_associate(Fl_Widget* w, void* p);
 void create_robot_order(Fl_Widget* w, void* p);
 void cancel_robot_order(Fl_Widget* w, void* p);
 void create_customer(Fl_Widget* w, void* p);
@@ -353,6 +351,53 @@ void cancel_customer(Fl_Widget* w, void* p) {
 	customer_dlg->hide();
 }
 
+class Sales_Associate_Dialog {
+	public:
+		Sales_Associate_Dialog() {
+			dialog = new Fl_Window(360, 160, "New Sales Associate");
+				s_name = new Fl_Input(120, 10, 210, 25, "Name:");
+				s_name->align(FL_ALIGN_LEFT);
+				
+				s_number = new Fl_Input(120, 40, 210, 25, "Sales #");
+				s_number->align(FL_ALIGN_LEFT);
+				
+				s_create = new Fl_Return_Button(115, 130, 150, 25, "Create Customer");
+				s_create->callback((Fl_Callback *)create_sales_associate, 0);
+				
+				s_cancel = new Fl_Button(270, 130, 60, 25, "Cancel");
+				s_cancel->callback((Fl_Callback *)cancel_sales_associate, 0);
+				dialog->end();
+				dialog->set_non_modal();
+		}
+	
+		void show() {dialog->show();}
+		void hide() {dialog->hide();}
+		string name() {return s_name->value();}
+		string number() {return s_number->value();}
+	
+	private:
+		Fl_Window *dialog;
+		Fl_Input *s_name;
+		Fl_Input *s_number;
+		Fl_Return_Button *s_create;
+		Fl_Button *s_cancel;
+};
+
+Sales_Associate_Dialog *sales_associate_dlg;
+
+void create_sales_associate(Fl_Widget* w, void* p) {
+	string name = sales_associate_dlg->name();
+	string number = sales_associate_dlg->number();
+	
+	sales_associate_dlg->hide();
+	shop.create_new_sales_associate(name, stoi(number));
+	fl_message("sales associate created successfully");
+}
+
+void cancel_sales_associate(Fl_Widget* w, void* p) {
+	customer_dlg->hide();
+}
+
 //Menu bar callbacks
 
 int newTorsoCB(Fl_Widget* w, void* p) { 
@@ -421,6 +466,12 @@ int newCustomerCB(Fl_Widget* w, void* p) {
 	return Fl::run();
 }
 
+int newSalesAssociateCB(Fl_Widget* w, void* p) {
+	sales_associate_dlg = new Sales_Associate_Dialog{};
+	sales_associate_dlg->show();
+	return Fl::run();
+}
+
 void helpCB(Fl_Widget* w, void* p) {
 	string msg;
   	msg = "Welcome to the Robbie Robot Shop\n";
@@ -456,8 +507,11 @@ Fl_Menu_Item menuitems[] = {
 		{ "&New Model 5000  ", FL_ALT + 'n', (Fl_Callback *)newRobotModel2CB },
 		{ "&New Model 2500  ", FL_ALT + 'k', (Fl_Callback *)newRobotModel3CB },
 		{ 0 },
-	{ "&Customers", 0, 0, 0, FL_SUBMENU },
+	{ "&Customer", 0, 0, 0, FL_SUBMENU },
 		{ "&New Customer  ", FL_ALT + 'c', (Fl_Callback *)newCustomerCB },
+		{ 0 },
+	{ "&Sales Associate", 0, 0, 0, FL_SUBMENU },
+		{ "&New Customer  ", FL_ALT + 'c', (Fl_Callback *)newSalesAssociateCB },
 		{ 0 },
 	{ "&Help", 0, 0, 0, FL_SUBMENU },
 		{ "&Help  ", FL_ALT + 'h', (Fl_Callback *)helpCB },
