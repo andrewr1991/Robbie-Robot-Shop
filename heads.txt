@@ -1,1 +1,0 @@
-Head,2,2500.000000,The head houses the logic components of a robot,head.png,27.000000
