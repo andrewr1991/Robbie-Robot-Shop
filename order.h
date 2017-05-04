@@ -1,11 +1,8 @@
 #ifndef ORDER_H
 #define ORDER_H 2017
 #include "customer.h"
-#include "customer.cpp"
 #include "sales_associate.h"
-#include "sales_associate.cpp"
 #include "robot_model.h"
-#include "robot_model.cpp"
 #include <string>
 
 using namespace std;
